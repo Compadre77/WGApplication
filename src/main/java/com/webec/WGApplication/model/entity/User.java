@@ -1,4 +1,4 @@
-package com.webec.WGApplication.model;
+package com.webec.WGApplication.model.entity;
 
 
 import org.springframework.security.core.GrantedAuthority;
