@@ -1,4 +1,4 @@
-package com.webec.WGApplication;
+package com.webec.WGApplication.model.enums;
 
 public enum BillStatus {
     NEGATIV,
