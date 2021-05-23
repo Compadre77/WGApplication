@@ -1,15 +1,10 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta charset="UTF-8">
-        <title>Finanzen</title>
-    </head>
-    <body>
-        <main>
-            <div th:each="bill: ${allBills}">
-                <p th:text="${bill.description}"></p>
-                <p th:text="${bill.amount}"></p>
-            </div>
-        </main>
-    </body>
+<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="fragments/layout::html(~{::title},~{::main})">
+    <title>WGApp | Finanzen</title>
+    <main>
+        <div th:each="bill: ${allBills}">
+            <p th:text="${bill.description}"></p>
+            <p th:text="${bill.amount}"></p>
+        </div>
+    </main>
 </html>
