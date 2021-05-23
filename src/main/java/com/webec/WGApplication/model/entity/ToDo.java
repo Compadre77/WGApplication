@@ -4,6 +4,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,7 @@ public class ToDo {
     private String description;
     private int days;
     private int currentAssignee;
+    private Date currentDeadline;
 
     @ElementCollection
     private List<Integer> userIDs;
@@ -47,6 +49,10 @@ public class ToDo {
     public void setCurrentAssignee(int currentAssignee) {
         this.currentAssignee = currentAssignee;
     }
+
+    public Date getCurrentDeadline() { return currentDeadline; }
+
+    public void setCurrentDeadline(Date currentDeadline) { this.currentDeadline = currentDeadline; }
 
     public List<Integer> getUserIDs() {
         return userIDs;

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "description": "Staubsaugen",
+    "days": 7,
+    "currentAssignee": 1,
+    "currentDeadline": "2012-04-23T18:25:43.511Z",
+    "userIDs": [2,3,4]
+  },
+  {
+    "id": 2,
+    "description": "Badezimmer putzen",
+    "days": 7,
+    "currentAssignee": 2,
+    "currentDeadline": "2012-04-23T18:25:43.511Z",
+    "userIDs": [3,4,1]
+  },
+  {
+    "id": 3,
+    "description": "Abstauben",
+    "days": 7,
+    "currentAssignee": 3,
+    "currentDeadline": "2012-04-23T18:25:43.511Z",
+    "userIDs": [4,1,2]
+  },
+  {
+    "id": 4,
+    "description": "Küche putzen",
+    "days": 7,
+    "currentAssignee": 4,
+    "currentDeadline": "2012-04-23T18:25:43.511Z",
+    "userIDs": [1,2,3]
+  }
+]

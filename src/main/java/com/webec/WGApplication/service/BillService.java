@@ -1,6 +1,7 @@
 package com.webec.WGApplication.service;
 
 import com.webec.WGApplication.model.BillEntry;
+import com.webec.WGApplication.model.entity.Bill;
 import com.webec.WGApplication.model.repository.BillRepository;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +28,10 @@ public class BillService {
                         b.getUserIDs(),
                         b.isFix()))
                 .collect(Collectors.toList());
+    }
+
+    public Bill add(Bill bill) {
+        return repo.save(bill);
     }
 }
 

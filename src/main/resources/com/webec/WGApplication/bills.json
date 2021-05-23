@@ -1,0 +1,98 @@
+[
+  {
+    "id": 1,
+    "date": "2012-04-23T18:25:43.511Z",
+    "creator": 3,
+    "description": "Coop Einkauf 23.4.2012",
+    "amount": 24.30,
+    "billStatus": 1,
+    "userIDs": [
+      1,2,3,4
+    ],
+    "isFix": false
+  },
+  {
+    "id": 2,
+    "date": "2012-04-23T18:25:43.511Z",
+    "creator": 3,
+    "description": "Neue Abfallsäcke",
+    "amount": 45.95,
+    "billStatus": 1,
+    "userIDs": [
+      1,2,3,4
+    ],
+    "isFix": false
+  },
+  {
+    "id": 3,
+    "date": "2012-04-23T18:25:43.511Z",
+    "creator": 3,
+    "description": "Verlängerungskabel",
+    "amount": 6.20,
+    "billStatus": 1,
+    "userIDs": [
+      1,2,3,4
+    ],
+    "isFix": false
+  },
+  {
+    "id": 4,
+    "date": "2012-04-23T18:25:43.511Z",
+    "creator": 1,
+    "description": "Rückzahlung an Marc",
+    "amount": 10.0,
+    "billStatus": 0,
+    "userIDs": [
+      3
+    ],
+    "isFix": false
+  },
+  {
+    "id": 5,
+    "date": "2012-04-23T18:25:43.511Z",
+    "creator": 1,
+    "description": "Einkauf vom 16.4.2020",
+    "amount": 50.30,
+    "billStatus": 0,
+    "userIDs": [
+      3,4,2
+    ],
+    "isFix": false
+  },
+  {
+    "id": 5,
+    "date": "2012-04-23T18:25:43.511Z",
+    "creator": 2,
+    "description": "Rückzahlung an Lisa",
+    "amount": 13.50,
+    "billStatus": 0,
+    "userIDs": [
+      1
+    ],
+    "isFix": false
+  },
+  {
+    "id": 5,
+    "date": "2012-04-23T18:25:43.511Z",
+    "creator": 2,
+    "description": "Einkauf vom 1.5.2020",
+    "amount": 30.20,
+    "billStatus": 0,
+    "userIDs": [
+      1
+    ],
+    "isFix": false
+  },
+  {
+    "id": 5,
+    "date": "2012-04-23T18:25:43.511Z",
+    "creator": 4,
+    "description": "Einkauf vom 11.4.2020",
+    "amount": 21.50,
+    "billStatus": 0,
+    "userIDs": [
+      1,2,3
+    ],
+    "isFix": false
+  }
+]

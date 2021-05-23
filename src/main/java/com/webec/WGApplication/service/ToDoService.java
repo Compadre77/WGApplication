@@ -20,6 +20,7 @@ public class ToDoService {
                     t.getDescription(),
                     t.getDays(),
                     t.getCurrentAssignee(),
+                    t.getCurrentDeadline(),
                     t.getUserIDs()))
                 .collect(toList());
     }
