@@ -1,11 +1,18 @@
 <!doctype html>
-<html lang="en">
+<html lang="de">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
     <title>WGApplication</title>
-    <link rel="shortcut icon" href="favicon.ico" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <meta name="robots" content="index,follow">
+    <meta name="author" content="Daniel Da Cruz und Sophia Villiger">
+    <meta name="description" content="Eine Applikation um alles Administrative in einer WG zu verwalten.">
+    <meta name="theme-color" content="#E7F3FC">
+    <link rel="icon" href="./favicon.png" type="img/png" style="width: 16px">
+    <link rel="canonical" href="WGApp.ch">
+    <link rel="shortcut icon" href="../static/favicon.png" th:href="@{/favicon.png}"/>
     <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
 </head>
 
@@ -19,9 +26,10 @@
 <!-- navigation -->
 <nav>
     <ul>
-        <li><a href="#">Startseite</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Kontakt</a></li>
+        <li><a href="#">Profile</a></li>
+        <li><a href="#">Einkauf</a></li>
+        <li><a href="#">Ämtli</a></li>
+        <li><a href="/finanzen">Finanzen</a></li>
     </ul>
 </nav>
 
@@ -31,10 +39,6 @@
     <p>Lorem ipsum dolor sit amet, consetetur elitr sadipscing.</p>
 </article>
 
-<!-- aside -->
-<aside>
-    Seitenleiste
-</aside>
 
 
 <!-- footer -->
