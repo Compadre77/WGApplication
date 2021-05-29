@@ -14,7 +14,7 @@ public class ToDoService {
 
     public ToDoService(ToDoRepository repo) { this.repo = repo; }
 
-    public List<ToDoEntry> getAllPurchases() {
+    public List<ToDoEntry> getAllTodos() {
         return repo.findAll().stream().map(t -> new ToDoEntry(
                     t.getId(),
                     t.getDescription(),
