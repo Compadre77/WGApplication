@@ -44,12 +44,6 @@ nav a:after  {
     width: 50px;
     z-index: -1;
 }
-nav a.active {
-    color: #198EE0;
-}
-nav a.active:after {
-    background-color: #E7F3FC;
-}
 nav a:hover:after {
     background-color: #E7F3FC;
 }

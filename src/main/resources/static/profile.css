@@ -1,2 +1,6 @@
-* {
+nav a#home {
+    color: #198EE0;
+}
+nav a#home:after {
+    background-color: #E7F3FC;
 }

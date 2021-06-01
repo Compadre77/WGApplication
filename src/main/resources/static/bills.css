@@ -1,2 +1,6 @@
-* {
+nav a#bill {
+    color: #198EE0;
+}
+nav a#bill:after {
+    background-color: #E7F3FC;
 }
