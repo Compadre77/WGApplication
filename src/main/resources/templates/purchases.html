@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="fragments/layout::html(~{::title},~{::main})">
-<head>
-    <meta charset="UTF-8">
-    <title>WGApp | Einkäufe</title>
-</head>
-<body>
+<title>WGApp | Einkauf</title>
+<link rel="stylesheet" href="../../static/purchases.css" th:href="@{/purchases.css}">
 <main>
     <div th:each="purchase: ${allPurchases}">
         <p th:text="${purchase.description}"></p>
         <p th:text="${purchase.checked}"></p>
     </div>
+    <form th:action="${add}" method="post">
+        <label for="description" class="padded-label">Description:</label>
+        <input type="text" name="description" id="description" title="description must not be empty">
+
+        <label for="checked" class="padded-label">Checked:</label>
+        <input type="checkbox" name="checked" id="checked">
+
+        <button type="submit">Create New ToDo</button>
+    </form>
 </main>
-</body>
 </html>

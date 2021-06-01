@@ -15,21 +15,22 @@ import org.springframework.stereotype.Service;
 public class PurchaseService {
     private final PurchaseRepository repo;
 
-    public PurchaseService(PurchaseRepository repo) { this.repo = repo; }
+    public PurchaseService(PurchaseRepository repo) {
+        this.repo = repo;
+    }
 
     public List<PurchaseEntry> getAllPurchases() {
         return repo.findAll().stream()
                 .map(p -> new PurchaseEntry(
-                    p.getId(),
-                    p.getDescription(),
-                    p.isChecked()))
+                        p.getId(),
+                        p.getDescription(),
+                        p.isChecked()))
                 .collect(Collectors.toList());
     }
 
-    public Purchase add(String description, int days, int currentAssignee, Date currentDeadline, int userID) {
-        List<Integer> userIDs = new ArrayList<>();
-        userIDs.add(userID);
+    public Purchase add(String description, boolean isChecked){
         var purchase = new Purchase();
-        return repo.save(purchase); // 'save' might return new object
+        return repo.save(purchase);
     }
+
 }

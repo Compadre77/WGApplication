@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="de" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="fragments/layout::html(~{::title},~{::main})">
-<head>
-    <meta charset="UTF-8">
-    <title>WGApp | Einkäufe</title>
-</head>
-<body>
+<title>WGApp | Ämtli</title>
+<link rel="stylesheet" href="../../static/todos.css" th:href="@{/todos.css}">
 <main>
     <div th:each="todo: ${allTodos}">
         <p th:text="${todo.description}"></p>
@@ -12,6 +9,20 @@
         <p th:text="${todo.currentAssignee}"></p>
         <p th:text="${todo.currentDeadline}"></p>
     </div>
+    <form th:action="${add}" method="post">
+        <label for="description" class="padded-label">Description:</label>
+        <input type="text" name="description" id="description" title="description must not be empty">
+
+        <label for="days" class="padded-label">Days:</label>
+        <input type="number" name="days" id="days" title="days must not be empty">
+
+        <label for="currentAssignee" class="padded-label">Current Assignee:</label>
+        <input type="text" name="currentAssignee" id="currentAssignee" title="current assignee must not be empty">
+
+        <label for="currentDeadline" class="padded-label">Current Deadline:</label>
+        <input type="date" name="currentDeadline" id="currentDeadline" title="current deadline must not be empty">
+
+        <button type="submit">Create New ToDo</button>
+    </form>
 </main>
-</body>
 </html>
