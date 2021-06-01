@@ -2,14 +2,12 @@ package com.webec.WGApplication.service;
 
 import com.webec.WGApplication.model.PurchaseEntry;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.toList;
-
 import com.webec.WGApplication.model.entity.Purchase;
-import com.webec.WGApplication.model.enums.BillStatus;
 import com.webec.WGApplication.model.repository.PurchaseRepository;
 import org.springframework.stereotype.Service;
 
@@ -28,15 +26,10 @@ public class PurchaseService {
                 .collect(Collectors.toList());
     }
 
-    public Purchase add(String description, boolean checked){
+    public Purchase add(String description, int days, int currentAssignee, Date currentDeadline, int userID) {
+        List<Integer> userIDs = new ArrayList<>();
+        userIDs.add(userID);
         var purchase = new Purchase();
-        purchase.setDescription(description);
-        purchase.setChecked(checked);
-        return add(purchase);
-    }
-
-    public Purchase add(Purchase purchase){
-        repo.add(purchase);
-        return purchase;
+        return repo.save(purchase); // 'save' might return new object
     }
 }
