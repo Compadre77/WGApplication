@@ -38,14 +38,6 @@ public class BillService {
         List<Integer> userIDs = new ArrayList<>();
         userIDs.add(userID);
         var bill = new Bill();
-        bill.setDate(Date.valueOf(LocalDate.now()));
-        bill.setCreator(1);
-        bill.setBillStatus(BillStatus.NEGATIV);
-
-        bill.setDescription(description);
-        bill.setAmount(amount);
-        bill.setUserIDs(userIDs);
-        bill.setFix(isFix);
         return repo.save(bill); // 'save' might return new object
     }
 }
