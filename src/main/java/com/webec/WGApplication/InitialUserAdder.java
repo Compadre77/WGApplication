@@ -28,7 +28,7 @@ public class InitialUserAdder {
             var admin = new User("admin", encoded, Set.of("ROLE_ADMIN"));
             userRepo.save(admin);
             System.out.println(encoded);
-            System.out.println(password);
+            System.out.println("PASSWORT: " + password);
         }
     }
 }

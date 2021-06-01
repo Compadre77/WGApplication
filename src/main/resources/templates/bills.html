@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
+    <title>WGApp | Finanzen</title>
+    <link rel="stylesheet" href="../../static/bills.css" th:href="@{/bills.css}">
+    <main>
+        <div th:each="bill: ${allBills}">
+            <p th:text="${bill.description}"></p>
+            <p th:text="${bill.amount}"></p>
+        </div>
+        <form th:action="${add}" method="post">
+            <label for="description" class="padded-label">description:</label>
+            <input type="text" name="description" id="description" title="description must not be empty">
+
+            <label for="amount" class="padded-label">amount:</label>
+            <input type="number" name="amount" id="amount" title="amount must not be empty">
+
+            <label for="user-ids" class="padded-label">amount:</label>
+            <input type="text" name="userIDs" id="user-ids" title="amount must not be empty">
+
+            <label for="is-fix" class="padded-label">amount:</label>
+            <input type="checkbox" name="isFix" id="is-fix" title="amount must not be empty">
+
+            <button type="submit">Create New</button>
+        </form>
+    </main>
+</html>

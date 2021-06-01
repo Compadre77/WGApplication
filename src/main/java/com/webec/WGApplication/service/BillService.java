@@ -2,9 +2,13 @@ package com.webec.WGApplication.service;
 
 import com.webec.WGApplication.model.BillEntry;
 import com.webec.WGApplication.model.entity.Bill;
+import com.webec.WGApplication.model.enums.BillStatus;
 import com.webec.WGApplication.model.repository.BillRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,8 +34,11 @@ public class BillService {
                 .collect(Collectors.toList());
     }
 
-    public Bill add(Bill bill) {
-        return repo.save(bill);
+    public Bill add(String description, double amount,int userID, boolean isFix) {
+        List<Integer> userIDs = new ArrayList<>();
+        userIDs.add(userID);
+        var bill = new Bill();
+        return repo.save(bill); // 'save' might return new object
     }
 }
 

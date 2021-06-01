@@ -1,47 +1,9 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width = device-width, initial-scale = 1.0" />
-    <title>WGApplication</title>
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="../static/style.css" th:href="@{/style.css}">
-</head>
-
-<body>
-
-<!-- header -->
-<header>
-    Kopfbereich
-</header>
-
-<!-- navigation -->
-<nav>
-    <ul>
-        <li><a href="#">Startseite</a></li>
-        <li><a href="#">Blog</a></li>
-        <li><a href="#">Kontakt</a></li>
-    </ul>
-</nav>
-
-<!-- article -->
-<article>
-    <h1>HALLO</h1>
-    <p>Lorem ipsum dolor sit amet, consetetur elitr sadipscing.</p>
-</article>
-
-<!-- aside -->
-<aside>
-    Seitenleiste
-</aside>
-
-
-<!-- footer -->
-<footer>
-    Fußzeile
-</footer>
-
-
-</body>
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
+    <title>WGApp</title>
+    <link rel="stylesheet" href="../../static/profile.css" th:href="@{/profile.css}">
+    <main>
+        <h1>HALLO</h1>
+        <p>Lorem ipsum dolor sit amet, consetetur elitr sadipscing.</p>
+    </main>
 </html>

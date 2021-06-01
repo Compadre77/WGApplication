@@ -6,15 +6,15 @@ import java.util.Date;
 import java.util.List;
 
 public class BillEntry {
-    private int id;
+    public int id;
 
-    private Date date;
-    private int creator;
-    private String description;
-    private double amount;
-    private BillStatus billStatus;
-    private List<Integer> userIDs;
-    private boolean isFix;
+    public Date date;
+    public int creator;
+    public String description;
+    public double amount;
+    public BillStatus billStatus;
+    public List<Integer> userIDs;
+    public boolean isFix;
 
     public BillEntry(int id,
                      Date date,
