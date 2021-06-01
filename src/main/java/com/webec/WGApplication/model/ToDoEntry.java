@@ -4,12 +4,12 @@ import java.util.Date;
 import java.util.List;
 
 public class ToDoEntry {
-    private int id;
-    private String description;
-    private int days;
-    private int currentAssignee;
-    private Date currentDeadline;
-    private List<Integer> userIDs;
+    public int id;
+    public String description;
+    public int days;
+    public int currentAssignee;
+    public Date currentDeadline;
+    public List<Integer> userIDs;
 
     public ToDoEntry(
             int id,
