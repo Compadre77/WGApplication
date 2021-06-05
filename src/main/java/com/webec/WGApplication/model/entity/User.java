@@ -55,6 +55,10 @@ public class User implements UserDetails {
         return true;
     }
 
+    public int getId() {
+        return id;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles.stream()
