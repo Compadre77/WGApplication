@@ -24,7 +24,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
-                .antMatchers("/**.css", "/**.png","/**.svg","/**.eot", "/**.ttf", "/**.woff", "/assets/fonts/**", "/", "/finanzen").permitAll()
                 .antMatchers("/contacts/add").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
@@ -34,24 +33,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-        var builder = User.withDefaultPasswordEncoder();
-
-        var sophia = builder
-                .username("sophia").password("sophia")
-                .roles().build();
-        var daniel = builder
-                .username("daniel").password("daniel")
-                .roles("ADMIN").build();
-        var felix = builder
-                .username("felix").password("felix")
-                .roles().build();
-
-        var sabrina = builder
-                .username("sabrina").password("sabrina")
-                .roles().build();
-        return new InMemoryUserDetailsManager(sophia, daniel, felix, sabrina);
-//        return username -> userRepository.findByUsername(username)
-//                .orElseThrow(() -> new UsernameNotFoundException(username));
+        return username -> userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username));
     }
 
 }

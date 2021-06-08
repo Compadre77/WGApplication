@@ -1,6 +1,10 @@
 package com.webec.WGApplication.model;
 
 import com.webec.WGApplication.model.enums.BillStatus;
+import com.webec.WGApplication.model.repository.UserRepository;
+import com.webec.WGApplication.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Date;
 import java.util.List;
@@ -14,6 +18,7 @@ public class BillEntry {
     public double amount;
     public BillStatus billStatus;
     public List<Integer> userIDs;
+    public List<UserEntry> users;
     public boolean isFix;
 
     public BillEntry(int id,

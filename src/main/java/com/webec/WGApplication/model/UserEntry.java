@@ -3,7 +3,6 @@ package com.webec.WGApplication.model;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
-import java.util.Set;
 
 public class UserEntry {
     public int id;

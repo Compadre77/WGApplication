@@ -1,12 +1,60 @@
-* {
+body {
     font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
 }
+
+/* TYPOGRAPHY */
+h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.25rem;
+    font-weight: 900;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+h5 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.25rem;
+    font-weight: 900;
+}
+
+h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.25rem;
+    font-weight: 900;
+}
+
 
 a {
     color: inherit;
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
 }
+
+.bold {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+/* NAVIGATION */
 
 nav {
     background-color: white;
@@ -51,4 +99,8 @@ nav a:hover:after {
 main {
     margin: auto;
     max-width: 1400px;
+}
+.content-wrapper{
+    margin: auto;
+    max-width: 1200px;
 }
