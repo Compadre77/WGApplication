@@ -2,11 +2,10 @@
 <html lang="de" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
 <title>WGApp | Einkauf</title>
 <link rel="stylesheet" href="../../static/purchases.css" th:href="@{/purchases.css}">
-<main>
-    <div th:each="purchase: ${allPurchases}">
-        <p th:text="${purchase.description}"></p>
-        <p th:text="${purchase.checked}"></p>
-    </div>
+<main id="einkauf">
+    <h1>Einkäufe</h1>
+    <h3>Erfasse deine Einkäufe hier.</h3>
+
     <form th:action="${add}" method="post">
         <label for="description" class="padded-label">Description:</label>
         <input type="text" name="description" id="description" title="description must not be empty">
@@ -16,5 +15,16 @@
 
         <button type="submit">Create New ToDo</button>
     </form>
+
+    <section class="content-wrapper">
+        <div class="purchase" th:each="purchase: ${allPurchases}">
+            <h4 th:text="${purchase.description}"></h4>
+            <p class="bold" th:text="'Menge ' + ${purchase.amount}"></p>
+            <form th:action="'einkauf/löschen/' + @{${purchase.id}}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
+    </section>
+
 </main>
 </html>

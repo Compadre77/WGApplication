@@ -1,71 +1,85 @@
 [
   {
     "id": 1,
+    "amount": "1",
     "description": "Butter",
     "checked": false
   },
   {
     "id": 2,
+    "amount": "1",
     "description": "WC-Papier",
     "checked": false
   },
   {
     "id": 3,
+    "amount": "1",
     "description": "Pflanzendünger",
     "checked": false
   },
   {
     "id": 4,
+    "amount": "1",
     "description": "Verlängerungskabel",
     "checked": false
   },
   {
     "id": 5,
+    "amount": "1",
     "description": "Milch",
     "checked": false
   },
   {
     "id": 6,
+    "amount": "1",
     "description": "Kafee",
     "checked": false
   },
   {
     "id": 7,
+    "amount": "1",
     "description": "Entkalkungsmittel",
     "checked": false
   },
   {
     "id": 8,
+    "amount": "1",
     "description": "Waschmittel",
     "checked": false
   },
   {
     "id": 9,
+    "amount": "1",
     "description": "Regeneriersalz",
     "checked": false
   },
   {
     "id": 10,
+    "amount": "1",
     "description": "Tonic",
     "checked": false
   },
   {
     "id": 11,
+    "amount": "2",
     "description": "Brot",
     "checked": false
   },
   {
     "id": 12,
+    "amount": "2",
     "description": "Konfitüre",
     "checked": false
   },
   {
     "id": 13,
+    "amount": "1",
     "description": "Honig",
     "checked": false
   },
   {
     "id": 14,
+    "amount": "1",
     "description": "Bratbutter",
     "checked": false
   }
