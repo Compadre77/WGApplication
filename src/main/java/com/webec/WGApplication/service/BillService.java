@@ -42,10 +42,12 @@ public class BillService {
         for (int i = 0; i < b.getUserIDs().size(); i++) {
             entry.users.add(userService.getUserById(b.getUserIDs().get(i)));
         }
+        entry.creator = userService.getUserById(b.getCreator());
         return entry;
     }
 
     public Bill add(
+            int id,
             String description,
             double amount,
             int[] userIDs,
@@ -62,7 +64,7 @@ public class BillService {
         bill.setBillStatus(BillStatus.NEGATIV);
         bill.setUserIDs(users);
         bill.setDate(new Date());
-        bill.setCreator(1);
+        bill.setCreator(id);
         return repo.save(bill);
     }
 

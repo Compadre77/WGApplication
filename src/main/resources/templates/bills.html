@@ -6,31 +6,45 @@
         <h1>Finanzen</h1>
         <h3>Erfasse deine Einkäufe hier.</h3>
         <section class="content-wrapper">
+            <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Finanzeintrag hinzufügen</button>
             <div class="bill" th:each="bill: ${allBills}">
-                <h4 th:text="${bill.description}"></h4>
-                <p th:text="${currentUser}"></p>
-                <p class="bold" th:text="'CHF ' + ${bill.amount}"></p>
-                <div class="users">
-                    <p th:each="user: ${bill.users}" th:text="${user.username}"></p>
+                <div class="bill-title">
+                    <h4 th:text="${bill.description}"></h4>
+                    <p class="comment" th:text="${bill.creator.username}"></p>
                 </div>
-                <form th:action="'finanzen/löschen/' + @{${bill.id}}" method="post">
-                    <input type="submit" value="Delete">
+                <p class="bold" th:text="'CHF ' + ${bill.amount}"></p>
+                <div class="user" th:each="user: ${bill.users}">
+                    <p th:text="${user.username}"></p>
+                    <p class="red" th:text="${#numbers.formatDecimal(bill.amount / #lists.size(bill.users), 1, 'DEFAULT', 2, 'DEFAULT')}"></p>
+                </div>
+                <form th:action="'finanzen/löschen/' + @{${bill.id}}" method="post" class="delete-button-wrapper">
+                    <Button class="btn" type="submit"><span class="icon ti-trash"></span></Button>
                 </form>
             </div>
         </section>
+        <section class="add-popup hidden popupJS">
+            <form th:action="${add}" method="post">
+                <h2>Neuer Finanzeintrag <span class="icon ti-close closePopupJS"></span></h2>
 
-        <form th:action="${add}" method="post">
-            <label for="description" class="padded-label">description:</label>
-            <input type="text" name="description" id="description" title="description must not be empty">
+                <div class="input-wrapper">
+                    <label for="description" class="padded-label">description</label>
+                    <input type="text" name="description" id="description" title="description must not be empty">
+                </div>
 
-            <label for="amount" class="padded-label">amount:</label>
-            <input type="number" name="amount" id="amount" step="0.01" title="amount must not be empty">
+                <div class="input-wrapper">
+                    <label for="amount" class="padded-label">amount</label>
+                    <input type="number" name="amount" id="amount" step="0.01" title="amount must not be empty">
+                </div>
 
-            <div th:each="user: ${users}" >
-                <label th:for="${user.username}" th:text="${user.username}" class="padded-label"></label>
-                <input type="checkbox" name="userIDs" th:value="${user.id}" th:id="${user.username}">
-            </div>
-            <button type="submit">Create New</button>
-        </form>
+                <div class="checkbox-wrapper">
+                    <div class="checkbox-wrappercheckbox" th:each="user: ${users}" th:if="${currentUser != user.id}">
+                        <input type="checkbox" name="userIDs" th:value="${user.id}" th:id="${user.username}">
+                        <label th:for="${user.username}" th:text="${user.username}" class="padded-label"></label>
+                    </div>
+                </div>
+                <button class="btn" type="submit">Create New</button>
+            </form>
+        </section>
+
     </main>
 </html>

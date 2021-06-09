@@ -4,7 +4,6 @@ package com.webec.WGApplication.controller;
 import com.webec.WGApplication.model.entity.User;
 import com.webec.WGApplication.service.BillService;
 import com.webec.WGApplication.service.UserService;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,6 +36,7 @@ public class BillController {
             @RequestParam @NotBlank int[] userIDs) {
 
         service.add(
+                ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId(),
                 description.strip(),
                 amount,
                 userIDs,

@@ -16,6 +16,34 @@ nav a#bill:after {
     flex-wrap: wrap;
     justify-content: space-between;
 }
-#finanzen .content-wrapper .bill .users{
+#finanzen .content-wrapper .add-popup-open-btn{
+    margin: 50px 0 20px 0;
+    padding: 20px 0;
+    width: 100%;
+}
+#finanzen .content-wrapper .bill >.bold{
+    margin-right: 20px;
+}
+#finanzen .content-wrapper .bill .bill-title{
+    padding: 16px 20px;
+}
+#finanzen .content-wrapper .bill .bill-title p{
+    margin-top: 5px;
+}
+
+#finanzen .content-wrapper .bill .user{
+    align-items: center;
+    border-top: 1px solid #D1D1D1;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px 16px 40px;
+    width: 100%;
+}
+
+#finanzen .content-wrapper .delete-button-wrapper{
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
     width: 100%;
 }
