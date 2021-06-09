@@ -2,7 +2,7 @@ package com.webec.WGApplication.model;
 
 public class PurchaseEntry {
     public int id;
-    int amount;
+    public int amount;
     public String description;
     public boolean checked;
 

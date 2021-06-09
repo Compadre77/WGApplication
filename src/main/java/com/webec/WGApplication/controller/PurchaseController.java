@@ -23,16 +23,15 @@ public class PurchaseController {
     }
 
     @PostMapping("/einkauf")
-    public int purchases(@RequestParam int amount,
+    public String purchases(@RequestParam int amount,
                          @RequestParam @NotBlank String description,
                          @RequestParam boolean checked){
 
-        var created = service.add(
+        service.add(
                 amount,
                 description.strip(),
                 checked);
-        System.out.println(created);
-        return created.getId();
+        return "redirect:/einkauf";
     }
 
     @PostMapping("/einkauf/löschen/{id}")

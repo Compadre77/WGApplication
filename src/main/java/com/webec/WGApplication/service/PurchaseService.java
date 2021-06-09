@@ -21,11 +21,7 @@ public class PurchaseService {
 
     public List<PurchaseEntry> getAllPurchases() {
         return purchaseRepo.findAll().stream()
-                .map(p -> new PurchaseEntry(
-                        p.getId(),
-                        p.getAmount(),
-                        p.getDescription(),
-                        p.isChecked()))
+                .map(p -> createPurchaseEntry(p))
                 .collect(Collectors.toList());
     }
 
@@ -48,7 +44,7 @@ public class PurchaseService {
         purchase.setDescription(description);
         purchase.setChecked(checked);
 
-        return purchase;
+        return purchaseRepo.save(purchase);
     }
 
     public Optional<Purchase> findPurchase(int id) {
