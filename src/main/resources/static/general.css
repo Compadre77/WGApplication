@@ -185,12 +185,14 @@ main {
 .add-popup form .checkbox-wrapper{
     align-items: center;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-start;
     margin: 30px 0;
     width: 100%;
 }
 .add-popup form .checkbox-wrapper label{
     border: 2px solid #E7F3FC;
+    box-sizing: border-box;
     background-color: #F7FBFE;
     border-radius: 2px;
     font-size: 1rem;

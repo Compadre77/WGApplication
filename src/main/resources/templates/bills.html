@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="checkbox-wrapper">
-                    <div class="checkbox-wrappercheckbox" th:each="user: ${users}" th:if="${currentUser != user.id}">
+                    <div class="checkbox" th:each="user: ${users}" th:if="${currentUser != user.id}">
                         <input type="checkbox" name="userIDs" th:value="${user.id}" th:id="${user.username}">
                         <label th:for="${user.username}" th:text="${user.username}" class="padded-label"></label>
                     </div>
