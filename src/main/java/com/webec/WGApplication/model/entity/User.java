@@ -21,9 +21,9 @@ public class User implements UserDetails {
     private int id;
 
     @Column(nullable = false, unique = true)
-    private String username; //
+    private String username;
     @Column(nullable = false)
-    private String password; // muss so heissen wil Spring security das dann checkt
+    private String password;
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> roles;
 
@@ -62,6 +62,8 @@ public class User implements UserDetails {
                 .map(SimpleGrantedAuthority::new)
                 .collect(toSet());
     }
+
+    public int getId() { return id; }
 
     public String getUsername() {
         return username;
