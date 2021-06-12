@@ -10,6 +10,8 @@ public class ToDoEntry {
     public int currentAssignee;
     public Date currentDeadline;
     public List<Integer> userIDs;
+    public List<UserEntry> users;
+
 
     public ToDoEntry(
             int id,
