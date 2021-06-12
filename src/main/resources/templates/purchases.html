@@ -2,24 +2,29 @@
 <html lang="de" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
 <title>WGApp | Einkauf</title>
 <link rel="stylesheet" href="../../static/purchases.css" th:href="@{/purchases.css}">
-<main>
-    <div th:each="purchase: ${allPurchases}">
-        <p th:text="${purchase.description}"></p>
-        <p th:text="${purchase.checked}"></p>
-    </div>
-    <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Einkauf hinzufügen</button>
-    <section class="add-popup hidden popupJS">
-        <form th:action="${add}" method="post">
-            <h2>Neuer Einkauf <span class="icon ti-close closePopupJS"></span></h2>
+<main id="einkauf">
+    <h1>Einkäufe</h1>
+    <h3>Erfasse deine Einkäufe hier.</h3>
+
+    <form th:action="${add}" method="post">
+        <label for="description" class="padded-label">Description:</label>
+        <input type="text" name="description" id="description" title="description must not be empty">
 
             <label for="description" class="padded-label">Description:</label>
             <input type="text" name="description" id="description" title="description must not be empty">
 
-            <label for="checked" class="padded-label">Checked:</label>
-            <input type="checkbox" name="checked" id="checked">
+        <button type="submit">Create New ToDo</button>
+    </form>
 
-            <button type="submit">Erstellen</button>
-        </form>
+    <section class="content-wrapper">
+        <div class="purchase" th:each="purchase: ${allPurchases}">
+            <h4 th:text="${purchase.description}"></h4>
+            <p class="bold" th:text="'Menge ' + ${purchase.amount}"></p>
+            <form th:action="'einkauf/löschen/' + @{${purchase.id}}" method="post">
+                <input type="submit" value="Delete">
+            </form>
+        </div>
     </section>
+
 </main>
 </html>

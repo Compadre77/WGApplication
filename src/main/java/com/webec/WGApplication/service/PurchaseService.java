@@ -1,10 +1,10 @@
 package com.webec.WGApplication.service;
 
+
 import com.webec.WGApplication.model.PurchaseEntry;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.webec.WGApplication.model.entity.Purchase;
@@ -13,24 +13,48 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PurchaseService {
-    private final PurchaseRepository repo;
+    private final PurchaseRepository purchaseRepo;
 
     public PurchaseService(PurchaseRepository repo) {
-        this.repo = repo;
+        this.purchaseRepo = repo;
     }
 
     public List<PurchaseEntry> getAllPurchases() {
-        return repo.findAll().stream()
-                .map(p -> new PurchaseEntry(
-                        p.getId(),
-                        p.getDescription(),
-                        p.isChecked()))
+        return purchaseRepo.findAll().stream()
+                .map(p -> createPurchaseEntry(p))
                 .collect(Collectors.toList());
     }
 
-    public Purchase add(String description, boolean isChecked){
-        var purchase = new Purchase();
-        return repo.save(purchase);
+    private PurchaseEntry createPurchaseEntry(Purchase p) {
+        var entry = new PurchaseEntry(
+                p.getId(),
+                p.getAmount(),
+                p.getDescription(),
+                p.isChecked());
+        return entry;
     }
+
+    public Purchase add(
+            int amount,
+            String description,
+            Boolean checked
+    ) {
+        var purchase = new Purchase();
+        purchase.setAmount(amount);
+        purchase.setDescription(description);
+        purchase.setChecked(checked);
+
+        return purchaseRepo.save(purchase);
+    }
+
+    public Optional<Purchase> findPurchase(int id) {
+        return purchaseRepo.findById(id);
+    }
+
+    public void delete(Purchase purchase){
+        purchaseRepo.delete(purchase);
+    }
+
+
 
 }

@@ -3,11 +3,11 @@ package com.webec.WGApplication.controller;
 import com.webec.WGApplication.service.PurchaseService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotBlank;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @Controller
 public class PurchaseController {
@@ -23,13 +23,30 @@ public class PurchaseController {
     }
 
     @PostMapping("/einkauf")
-    public int purchases(@RequestParam @NotBlank String description,
+    public String purchases(@RequestParam int amount,
+                         @RequestParam @NotBlank String description,
                          @RequestParam boolean checked){
 
-        var created = service.add(
+        service.add(
+                amount,
                 description.strip(),
                 checked);
-        System.out.println(created);
-        return created.getId();
+        return "redirect:/einkauf";
     }
+
+    @PostMapping("/einkauf/löschen/{id}")
+    public String deletePurchase(@PathVariable int id){
+        var purchase = service.findPurchase(id).orElseThrow(PurchaseNotFound::new);
+        service.delete(purchase);
+        return "redirect:/einkauf";
+    }
+
+    @ExceptionHandler(PurchaseController.PurchaseNotFound.class)
+    @ResponseStatus(NOT_FOUND)
+    public String notFound(Model model) {
+        model.addAttribute("purchases", service.getAllPurchases());
+        model.addAttribute("errorMessage", "Purchase not found");
+        return "einkauf";
+    }
+    private static class PurchaseNotFound extends RuntimeException {}
 }

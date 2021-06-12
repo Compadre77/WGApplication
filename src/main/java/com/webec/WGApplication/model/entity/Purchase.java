@@ -10,11 +10,20 @@ public class Purchase {
     @Id
     @GeneratedValue
     private int id;
+    private int amount;
     private String description;
     private boolean checked;
 
     public int getId() {
         return id;
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public String getDescription() {
