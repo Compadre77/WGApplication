@@ -9,20 +9,26 @@
         <p th:text="${todo.currentAssignee}"></p>
         <p th:text="${todo.currentDeadline}"></p>
     </div>
-    <form th:action="${add}" method="post">
-        <label for="description" class="padded-label">Description:</label>
-        <input type="text" name="description" id="description" title="description must not be empty">
 
-        <label for="days" class="padded-label">Days:</label>
-        <input type="number" name="days" id="days" title="days must not be empty">
+    <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Todo hinzufügen</button>
+    <section class="add-popup hidden popupJS">
+        <form th:action="${add}" method="post">
+            <h2>Neues Ämtli <span class="icon ti-close closePopupJS"></span></h2>
 
-        <label for="currentAssignee" class="padded-label">Current Assignee:</label>
-        <input type="text" name="currentAssignee" id="currentAssignee" title="current assignee must not be empty">
+            <label for="description" class="padded-label">Description:</label>
+            <input type="text" name="description" id="description" title="description must not be empty">
 
-        <label for="currentDeadline" class="padded-label">Current Deadline:</label>
-        <input type="date" name="currentDeadline" id="currentDeadline" title="current deadline must not be empty">
+            <label for="days" class="padded-label">Days:</label>
+            <input type="number" name="days" id="days" title="days must not be empty">
 
-        <button type="submit">Create New ToDo</button>
-    </form>
+            <label for="currentAssignee" class="padded-label">Current Assignee:</label>
+            <input type="text" name="currentAssignee" id="currentAssignee" title="current assignee must not be empty">
+
+            <label for="currentDeadline" class="padded-label">Current Deadline:</label>
+            <input type="date" name="currentDeadline" id="currentDeadline" title="current deadline must not be empty">
+
+            <button type="submit">Erstellen</button>
+        </form>
+    </section>
 </main>
 </html>

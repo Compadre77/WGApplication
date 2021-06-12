@@ -124,14 +124,21 @@ nav a:after  {
 nav a:hover:after {
     background-color: #E7F3FC;
 }
-
+/* LAYOUT */
 main {
-    margin: auto;
-    max-width: 1400px;
+    box-sizing: border-box;
+    margin: 80px 20px 200px 100px;
+    width: calc(100% - 120px);
 }
 .content-wrapper{
     margin: auto;
     max-width: 1200px;
+}
+@media screen and(min-width: 1500px) {
+    main {
+        margin: 100px auto 200px;
+        max-width: 1400px;
+    }
 }
 
 

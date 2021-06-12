@@ -7,14 +7,19 @@
         <p th:text="${purchase.description}"></p>
         <p th:text="${purchase.checked}"></p>
     </div>
-    <form th:action="${add}" method="post">
-        <label for="description" class="padded-label">Description:</label>
-        <input type="text" name="description" id="description" title="description must not be empty">
+    <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Einkauf hinzufügen</button>
+    <section class="add-popup hidden popupJS">
+        <form th:action="${add}" method="post">
+            <h2>Neuer Einkauf <span class="icon ti-close closePopupJS"></span></h2>
 
-        <label for="checked" class="padded-label">Checked:</label>
-        <input type="checkbox" name="checked" id="checked">
+            <label for="description" class="padded-label">Description:</label>
+            <input type="text" name="description" id="description" title="description must not be empty">
 
-        <button type="submit">Create New ToDo</button>
-    </form>
+            <label for="checked" class="padded-label">Checked:</label>
+            <input type="checkbox" name="checked" id="checked">
+
+            <button type="submit">Erstellen</button>
+        </form>
+    </section>
 </main>
 </html>
