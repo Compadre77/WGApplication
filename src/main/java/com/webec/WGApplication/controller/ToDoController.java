@@ -2,6 +2,7 @@ package com.webec.WGApplication.controller;
 
 import com.webec.WGApplication.model.entity.User;
 import com.webec.WGApplication.service.ToDoService;
+import com.webec.WGApplication.service.UserService;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,13 +16,16 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 @Controller
 public class ToDoController {
     private final ToDoService service;
+    private final UserService userService;
 
-    public ToDoController(ToDoService service){ this.service = service; }
+    public ToDoController(ToDoService service, UserService userService) { this.service = service; this.userService = userService;  }
 
     @GetMapping("/ämtli")
     public String todos(Model model){
         model.addAttribute("allTodos", service.getAllToDos());
+        model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("todoCount", service.getAllToDos().size());
+        model.addAttribute("currentUser", ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
         return "todos";
     }
 
