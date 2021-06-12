@@ -5,17 +5,19 @@
 <main id="einkauf">
     <h1>Einkäufe</h1>
     <h3>Erfasse deine Einkäufe hier.</h3>
-
-    <form th:action="${add}" method="post">
-        <label for="description" class="padded-label">Description:</label>
-        <input type="text" name="description" id="description" title="description must not be empty">
-
+    <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Einkauf hinzufügen</button>
+    <section class="add-popup hidden popupJS">
+        <form th:action="${add}" method="post">
+            <h2>Neuen Eintrag <span class="icon ti-close closePopupJS"></span></h2>
             <label for="description" class="padded-label">Description:</label>
             <input type="text" name="description" id="description" title="description must not be empty">
 
-        <button type="submit">Create New ToDo</button>
-    </form>
+            <label for="amount" class="padded-label">amount:</label>
+            <input type="number" name="amount" id="amount" title="description must not be empty">
 
+            <button type="submit">Erstellen</button>
+        </form>
+    </section>
     <section class="content-wrapper">
         <div class="purchase" th:each="purchase: ${allPurchases}">
             <h4 th:text="${purchase.description}"></h4>
@@ -25,6 +27,5 @@
             </form>
         </div>
     </section>
-
 </main>
 </html>

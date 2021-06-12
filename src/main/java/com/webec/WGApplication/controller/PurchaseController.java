@@ -24,13 +24,11 @@ public class PurchaseController {
 
     @PostMapping("/einkauf")
     public String purchases(@RequestParam int amount,
-                         @RequestParam @NotBlank String description,
-                         @RequestParam boolean checked){
+                         @RequestParam @NotBlank String description){
 
         service.add(
                 amount,
-                description.strip(),
-                checked);
+                description.strip());
         return "redirect:/einkauf";
     }
 

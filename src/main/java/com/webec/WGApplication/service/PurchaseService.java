@@ -36,13 +36,12 @@ public class PurchaseService {
 
     public Purchase add(
             int amount,
-            String description,
-            Boolean checked
+            String description
     ) {
         var purchase = new Purchase();
         purchase.setAmount(amount);
         purchase.setDescription(description);
-        purchase.setChecked(checked);
+        purchase.setChecked(false);
 
         return purchaseRepo.save(purchase);
     }
