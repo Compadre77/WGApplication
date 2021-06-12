@@ -3,7 +3,11 @@
     <title>WGApp</title>
     <link rel="stylesheet" href="../../static/profile.css" th:href="@{/profile.css}">
     <main>
-        <h1 >HALLO </h1>
-        <p>Lorem ipsum dolor sit amet, consetetur elitr sadipscing.</p>
+        <h1 th:text="'Hallo '+${currentUser}"> </h1>
+        <p>Hier hast du eine Übersicht über alle deine Daten.</p>
+        <section class="content-wrapper">
+            <h2>Deine Todos</h2>
+            <h2>Deine Finanzen</h2>
+        </section>
     </main>
 </html>
