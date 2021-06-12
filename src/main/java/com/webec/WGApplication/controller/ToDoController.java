@@ -21,29 +21,31 @@ public class ToDoController {
     @GetMapping("/ämtli")
     public String todos(Model model){
         model.addAttribute("allTodos", service.getAllToDos());
-        model.addAttribute("billCount", service.getAllToDos().size());
+        model.addAttribute("todoCount", service.getAllToDos().size());
         return "todos";
     }
 
     @PostMapping("/ämtli")
     public String todos(@RequestParam @NotBlank String description,
                      @RequestParam @NotBlank int days,
-                     @RequestParam @NotBlank int currentAssignee,
+                     @RequestParam @NotBlank int currentAssigneeId,
                      @RequestParam @NotBlank Date currentDeadline,
+                     @RequestParam @NotBlank boolean done,
                      @RequestParam int[] userIDs){
 
         service.add(
                 ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId(),
                 description.strip(),
                 days,
-                currentAssignee,
+                currentAssigneeId,
                 currentDeadline,
+                done,
                 userIDs
         );
         return "redirect:/ämtli";
     }
 
-    @PostMapping("/finanzen/löschen/{id}")
+    @PostMapping("/ämtli/löschen/{id}")
     public String deleteContact(@PathVariable int id) {
         var todo = service.findToDo(id).orElseThrow(ToDoController.ToDoNotFound::new);
         service.delete(todo);

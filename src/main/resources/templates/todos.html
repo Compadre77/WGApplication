@@ -2,13 +2,20 @@
 <html lang="de" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
 <title>WGApp | Ämtli</title>
 <link rel="stylesheet" href="../../static/todos.css" th:href="@{/todos.css}">
-<main>
-    <div th:each="todo: ${allTodos}">
-        <p th:text="${todo.description}"></p>
-        <p th:text="${todo.days}">Tage</p>
-        <p th:text="${todo.currentAssignee}"></p>
-        <p th:text="${todo.currentDeadline}"></p>
-    </div>
+<main id="ämtli">
+        <h1>Ämtli</h1>
+        <h3>Verfasse deine Ämtli hier</h3>
+        <section class="content-wrapper">
+            <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Ämtli hinzufügen</button>
+
+            <div th:each="todo: ${allTodos}" th:class="${todo.done} ? 'isDone todo' : 'todo' ">
+                    <h3 th:text="${todo.currentAssignee.username}"></h3>
+                <form th:action="'ämtli/update/' + @{${todo.id}}" method="post" class="input-wrapper" th:id="'setDone-' + ${todo.id}">
+                    <input type="checkbox" name="isDone" th:id="'isDone' + ${todo.id}" onchange="this.parentElement.submit()" th:checked="${todo.done}">
+                    <label th:for="'isDone' + ${todo.id}" th:text="${todo.description}"></label>
+                </form>
+            </div>
+        </section>
 
     <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Todo hinzufügen</button>
     <section class="add-popup hidden popupJS">

@@ -37,11 +37,13 @@ public class ToDoService {
                 t.getDays(),
                 t.getCurrentAssignee(),
                 t.getCurrentDeadline(),
+                t.isDone(),
                 t.getUserIDs());
         entry.users = new ArrayList<>();
         for (int i = 0; i < t.getUserIDs().size(); i++){
             entry.users.add(userService.getUserById(t.getUserIDs().get(i)));
         }
+        entry.currentAssignee = userService.getUserById(t.getCurrentAssignee());
         return entry;
     }
 
@@ -49,8 +51,9 @@ public class ToDoService {
             int id,
             String description,
             int days,
-            int currentAssignee,
+            int currentAssigneeId,
             Date currentDeadline,
+            boolean done,
             int[] userIDs
     ) {
         List<Integer> users = new ArrayList<>();
@@ -60,8 +63,9 @@ public class ToDoService {
         var todo = new ToDo();
         todo.setDescription(description);
         todo.setDays(days);
-        todo.setCurrentAssignee(currentAssignee);
+        todo.setCurrentAssignee(currentAssigneeId);
         todo.setCurrentDeadline(currentDeadline);
+        todo.setDone(done);
         todo.setUserIDs(users);
         return repo.save(todo);
     }
