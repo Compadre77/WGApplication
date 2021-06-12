@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Collection;
+
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 
@@ -23,8 +25,7 @@ public class BillController {
 
     @GetMapping("/finanzen")
     public String bills(Model model) {
-        model.addAttribute("allBills", service.getAllBills());
-        model.addAttribute("billCount", service.getAllBills().size());
+        model.addAttribute("allBills",  service.getAllBills());
         model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("currentUser", ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
         return "bills";

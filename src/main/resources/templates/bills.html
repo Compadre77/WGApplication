@@ -15,7 +15,7 @@
                 <p class="bold" th:text="'CHF ' + ${bill.amount}"></p>
                 <div class="user" th:each="user: ${bill.users}">
                     <p th:text="${user.username}"></p>
-                    <p class="red" th:text="${#numbers.formatDecimal(bill.amount / #lists.size(bill.users), 1, 'DEFAULT', 2, 'DEFAULT')}"></p>
+                    <p class="red" th:text="${#numbers.formatDecimal(bill.amount / (#lists.size(bill.users) + 1), 1, 'DEFAULT', 2, 'DEFAULT')}"></p>
                 </div>
                 <form th:action="'finanzen/löschen/' + @{${bill.id}}" method="post" class="delete-button-wrapper">
                     <Button class="btn" type="submit"><span class="icon ti-trash"></span></Button>
