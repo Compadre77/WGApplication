@@ -1,0 +1,43 @@
+nav a#ämtli {
+    color: #198EE0;
+}
+nav a#ämtli:after {
+    background-color: #E7F3FC;
+}
+#ämtli .content-wrapper .todo{
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#ämtli .content-wrapper .add-popup-open-btn{
+    margin: 50px 0 20px 0;
+    padding: 20px 0;
+    width: 100%;
+}
+#ämtli .content-wrapper .todo >.bold{
+    margin-right: 20px;
+}
+#ämtli .content-wrapper .todo .todo-username{
+    padding: 16px 20px;
+}
+#ämtli .content-wrapper .todo .todo-username p{
+    margin-top: 5px;
+}
+
+#ämtli .content-wrapper .todo .user{
+    align-items: center;
+    border-top: 1px solid #D1D1D1;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 20px 16px 40px;
+    width: 100%;
+}
+
+#ämtli .content-wrapper .delete-button-wrapper{
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+    width: 100%;
+}
