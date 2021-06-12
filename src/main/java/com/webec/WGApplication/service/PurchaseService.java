@@ -55,5 +55,7 @@ public class PurchaseService {
     }
 
 
-
+    public void update(Purchase purchase) {
+        purchaseRepo.save(purchase);
+    }
 }

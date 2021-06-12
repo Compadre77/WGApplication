@@ -32,6 +32,15 @@ public class PurchaseController {
         return "redirect:/einkauf";
     }
 
+    @PostMapping("/einkauf/update/{id}")
+    public String updatePurchase(@PathVariable  int id,
+                                 @RequestParam(required = false) String isChecked){
+        var purchase = service.findPurchase(id).orElseThrow(PurchaseNotFound::new);
+        purchase.setChecked(isChecked != null ? true : false);
+        service.update(purchase);
+        return "redirect:/einkauf";
+    }
+
     @PostMapping("/einkauf/löschen/{id}")
     public String deletePurchase(@PathVariable int id){
         var purchase = service.findPurchase(id).orElseThrow(PurchaseNotFound::new);

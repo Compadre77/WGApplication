@@ -24,7 +24,7 @@ h3 {
     font-weight: 500;
 }
 
-h4 {
+h4{
     font-family: 'Montserrat', sans-serif;
     font-size: 1rem;
     font-weight: 700;
@@ -153,6 +153,45 @@ main {
     outline: none;
     width: 100%;
     padding: 16px;
+}
+
+.input-wrapper input[type="checkbox"]{
+    display: none;
+}
+
+.input-wrapper input[type="checkbox"] + label{
+    cursor: pointer;
+    padding-left: 40px;
+    position: relative;
+}
+.input-wrapper input[type="checkbox"] + label:before{
+    background-color: #F7FBFE;
+    border: 1px solid #E7F3FC;
+    border-radius: 30px;
+    content: '';
+    height: 20px;
+    left: 0;
+    position: absolute;
+    transition: .2s;
+    top: -2px;
+    width: 20px;
+}
+.input-wrapper input[type="checkbox"] + label:after{
+    content: '';
+    color: #198EE0;
+    font-family: 'themify';
+    font-size: 20px;
+    left: 2px;
+    position: absolute;
+    transition: .2s;
+    top: -2px;
+}
+.input-wrapper input[type="checkbox"]:checked + label:after{
+    content: "\e64c";
+}
+
+.input-wrapper input[type="checkbox"]:checked + label:before{
+    background-color: #E7F3FC;
 }
 
 

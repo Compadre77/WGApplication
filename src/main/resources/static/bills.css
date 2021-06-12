@@ -4,12 +4,6 @@ nav a#bill {
 nav a#bill:after {
     background-color: #E7F3FC;
 }
-
-#finanzen {
-}
-
-#finanzen .content-wrapper {
-}
 #finanzen .content-wrapper .bill{
     align-items: center;
     display: flex;

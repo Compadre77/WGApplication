@@ -1,31 +1,42 @@
 <!DOCTYPE html>
-<html lang="de" xmlns:th="http://www.w3.org/1999/xhtml" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
+<html lang="de" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
 <title>WGApp | Einkauf</title>
 <link rel="stylesheet" href="../../static/purchases.css" th:href="@{/purchases.css}">
 <main id="einkauf">
     <h1>Einkäufe</h1>
     <h3>Erfasse deine Einkäufe hier.</h3>
-    <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Einkauf hinzufügen</button>
+    <section class="content-wrapper">
+        <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Einkauf hinzufügen</button>
+        <div th:each="purchase: ${allPurchases}" th:class="${purchase.checked} ? 'isChecked purchase' : 'purchase' ">
+            <form th:action="'einkauf/update/' + @{${purchase.id}}" method="post" class="input-wrapper"  th:id="'setChecked-' + ${purchase.id}">
+                <input type="checkbox" name="isChecked" th:id="'isChecked' + ${purchase.id}" onchange="this.parentElement.submit()" th:checked="${purchase.checked}">
+                <label th:for="'isChecked' + ${purchase.id}" th:text="${purchase.description}"></label>
+            </form>
+            <div class="amount-container">
+                <p class="comment" th:text="'Menge ' + ${purchase.amount}"></p>
+                <form th:action="'einkauf/löschen/' + @{${purchase.id}}" method="post">
+                    <Button class="btn" type="submit"><span class="icon ti-trash"></span></Button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <section class="add-popup hidden popupJS">
         <form th:action="${add}" method="post">
             <h2>Neuen Eintrag <span class="icon ti-close closePopupJS"></span></h2>
-            <label for="description" class="padded-label">Description:</label>
-            <input type="text" name="description" id="description" title="description must not be empty">
 
-            <label for="amount" class="padded-label">amount:</label>
-            <input type="number" name="amount" id="amount" title="description must not be empty">
+            <div class="input-wrapper">
+                <label for="description" class="padded-label">Produkt</label>
+                <input required type="text" name="description" id="description" title="Produkt darf nicht leer bleiben.">
+            </div>
+
+            <div class="input-wrapper">
+                <label for="amount" class="padded-label">Menge</label>
+                <input required type="number" name="amount" id="amount" title="Menge darf nicht leer bleiben.">
+            </div>
 
             <button type="submit">Erstellen</button>
         </form>
-    </section>
-    <section class="content-wrapper">
-        <div class="purchase" th:each="purchase: ${allPurchases}">
-            <h4 th:text="${purchase.description}"></h4>
-            <p class="bold" th:text="'Menge ' + ${purchase.amount}"></p>
-            <form th:action="'einkauf/löschen/' + @{${purchase.id}}" method="post">
-                <input type="submit" value="Delete">
-            </form>
-        </div>
     </section>
 </main>
 </html>
