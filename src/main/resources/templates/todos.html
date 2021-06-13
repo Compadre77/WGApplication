@@ -16,7 +16,7 @@
                        onchange="this.parentElement.submit()" th:checked="${todo.done}">
                 <label th:for="'isDone' + ${todo.id}" th:text="${todo.description}"></label>
             </form>
-            <p class="bold" th:text="${todo.currentDeadline.getDay()}"></p>
+                <p class="bold" th:text="${todo.currentDeadline}"></p>
         </div>
         <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Ämtli hinzufügen
         </button>
