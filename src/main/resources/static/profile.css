@@ -4,3 +4,21 @@ nav a#home {
 nav a#home:after {
     background-color: #E7F3FC;
 }
+#profile article{
+    margin-top: 80px;
+}
+#profile article h2{
+    margin-bottom: 20px;
+}
+
+#profile #finanzen h3{
+    margin: 40px 0 10px;
+}
+#profile #finanzen .bill{
+    align-items: center;
+    border-bottom: 1px solid #D1D1D1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 16px;
+}

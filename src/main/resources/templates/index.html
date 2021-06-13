@@ -2,12 +2,28 @@
 <html lang="de" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
     <title>WGApp</title>
     <link rel="stylesheet" href="../../static/profile.css" th:href="@{/profile.css}">
-    <main>
+    <main id="profile">
         <h1 th:text="'Hallo '+${currentUser}"> </h1>
-        <p>Hier hast du eine Übersicht über alle deine Daten.</p>
+        <h3>Hier hast du eine Übersicht über alle deine Daten.</h3>
         <section class="content-wrapper">
-            <h2>Deine Todos</h2>
-            <h2>Deine Finanzen</h2>
+            <article>
+                <h2>Deine Todos</h2>
+                <div th:each="todo: ${currentUserToDos}" th:text="${todo.description}"></div>
+            </article>
+            <article id="finanzen">
+                <h2>Deine Finanzen</h2>
+                <h3>Du schuldest insgesammt <span class="red" th:text="'CHF '+${#numbers.formatDecimal(debt, 1, 'DEFAULT', 2, 'DEFAULT')}"></span></h3>
+                <div class="bill" th:each="bill: ${currentUserBills}">
+                    <p th:text="${bill.description}"></p>
+                    <p class="comment" th:text="'an ' + ${bill.creator.username}"></p>
+                    <p class="bold" th:text="'CHF ' + ${#numbers.formatDecimal(bill.amount / (#lists.size(bill.users) + 1), 1, 'DEFAULT', 2, 'DEFAULT')}"></p>
+                </div>
+                <h3>Dir werden <span class="red" th:text="'CHF '+${#numbers.formatDecimal(credit, 1, 'DEFAULT', 2, 'DEFAULT')}"></span> geschuldet.</h3>
+                <div class="bill" th:each="bill: ${currentUserBillsCreated}">
+                    <p th:text="${bill.description}"></p>
+                    <p class="bold" th:text="'CHF ' + ${#numbers.formatDecimal((bill.amount / (#lists.size(bill.users) + 1) * #lists.size(bill.users)), 1, 'DEFAULT', 2, 'DEFAULT')}"></p>
+                </div>
+            </article>
         </section>
     </main>
 </html>
