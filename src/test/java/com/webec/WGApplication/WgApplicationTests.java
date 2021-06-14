@@ -4,6 +4,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.ui.ConcurrentModel;
+import org.springframework.ui.Model;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class WgApplicationTests {
@@ -15,6 +17,13 @@ class WgApplicationTests {
 
 	@Test
 	void contextLoads() {
+
+		// given
+		ConverterController controller = new ConverterController();
+		Model model = new ConcurrentModel();
+
+
+
 	}
 
 }
