@@ -1,30 +1,22 @@
-nav a#ämtli {
+nav a#todo {
     color: #198EE0;
 }
-nav a#ämtli:after {
+nav a#todo:after {
     background-color: #E7F3FC;
 }
 #ämtli .content-wrapper .todo{
     align-items: center;
+    border-bottom: 1px solid #d1d1d1;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding: 16px 0;
 }
 #ämtli .content-wrapper .add-popup-open-btn{
     margin: 50px 0 20px 0;
     padding: 20px 0;
     width: 100%;
 }
-#ämtli .content-wrapper .todo >.bold{
-    margin-right: 20px;
-}
-#ämtli .content-wrapper .todo .todo-username{
-    padding: 16px 20px;
-}
-#ämtli .content-wrapper .todo .todo-username p{
-    margin-top: 5px;
-}
-
 #ämtli .content-wrapper .todo .user{
     align-items: center;
     border-top: 1px solid #D1D1D1;

@@ -10,7 +10,6 @@ public class ToDoEntry {
     public int currentAssigneeId;
     public UserEntry currentAssignee;
     public Date currentDeadline;
-    public boolean done;
     public List<Integer> userIDs;
     public List<UserEntry> users;
 
@@ -21,7 +20,6 @@ public class ToDoEntry {
             int days,
             int currentAssigneeId,
             Date currentDeadline,
-            boolean done,
             List<Integer> userIDs
     ){
         this.id = id;
@@ -29,7 +27,6 @@ public class ToDoEntry {
         this.days = days;
         this.currentAssigneeId = currentAssigneeId;
         this.currentDeadline = currentDeadline;
-        this.done = done;
         this.userIDs = userIDs;
     }
 }
