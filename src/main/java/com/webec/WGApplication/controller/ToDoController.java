@@ -18,7 +18,10 @@ public class ToDoController {
     private final ToDoService service;
     private final UserService userService;
 
-    public ToDoController(ToDoService service, UserService userService) { this.service = service; this.userService = userService;  }
+    public ToDoController(ToDoService service, UserService userService) {
+        this.service = service;
+        this.userService = userService;
+    }
 
     @GetMapping("/ämtli")
     public String todos(Model model){
@@ -27,6 +30,10 @@ public class ToDoController {
         model.addAttribute("currentUser", ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
         return "todos";
     }
+//    @GetMapping("/ämtli/{id}")
+//    public String todosByID(Model model){
+//        model.addAllAttributes("todosByID", service.getTodosByCurrentAssignee())
+//    }
 
     @PostMapping("/ämtli")
     public String todos(@RequestParam @NotBlank String description,

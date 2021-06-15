@@ -10,8 +10,7 @@
             <div class="todo-username">
                 <h3 th:text="${todo.currentAssignee.username}"></h3>
             </div>
-            <form th:action="'ämtli/update/' + @{${todo.id}}" method="post" class="input-wrapper"
-                  th:id="'setDone-' + ${todo.id}">
+            <form th:action="'ämtli/update/' + @{${todo.id}}" method="post" class="input-wrapper">
                 <input type="checkbox" name="isDone" th:id="'isDone' + ${todo.id}"
                        onchange="this.parentElement.submit()" th:checked="${todo.done}">
                 <label th:for="'isDone' + ${todo.id}" th:text="${todo.description}"></label>
