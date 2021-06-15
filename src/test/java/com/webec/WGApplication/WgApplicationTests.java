@@ -18,10 +18,6 @@ class WgApplicationTests {
 	@Test
 	void contextLoads() {
 
-		// given
-		ConverterController controller = new ConverterController();
-		Model model = new ConcurrentModel();
-
 
 
 	}

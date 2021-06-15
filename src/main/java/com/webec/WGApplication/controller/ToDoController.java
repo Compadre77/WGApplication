@@ -24,7 +24,6 @@ public class ToDoController {
     public String todos(Model model){
         model.addAttribute("allTodos", service.getAllToDos());
         model.addAttribute("users", userService.getAllUsers());
-        model.addAttribute("todoCount", service.getAllToDos().size());
         model.addAttribute("currentUser", ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
         return "todos";
     }
