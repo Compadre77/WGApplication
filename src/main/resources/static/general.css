@@ -88,21 +88,27 @@ a {
 nav {
     background-color: white;
     box-shadow: 0 0 6px #2424245e;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
     height: 100vh;
+    justify-content: space-between;
     left: 0;
     padding-top: 50px;
     position: fixed;
     top: 0;
     width: 80px;
     z-index: 10;
+    align-items: center;
 }
 
 nav a {
     align-items: center;
+    display: flex;
     font-size: 12px;
     flex-direction: column;
-    display: flex;
     justify-content: center;
+    line-height: 1.4;
     margin-bottom: 30px;
     position: relative;
 }
