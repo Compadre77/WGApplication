@@ -30,6 +30,12 @@ public class ToDoService {
                 .collect(Collectors.toList());
     }
 
+    public List<ToDoEntry> getTodosByCurrentAssignee(int id){
+        return repo.findByCurrentAssignee(id).stream()
+                .map(t -> createTodoEntry(t))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
     private ToDoEntry createTodoEntry(ToDo t){
         var entry = new ToDoEntry(
                 t.getId(),
