@@ -18,7 +18,12 @@ nav a#todo:after {
     color: #757575;
 }
 #ämtli .content-wrapper .user .todo label{
-    font-size: 1rem;
+    font-size: 0.75rem;
+}
+@media screen and (min-width: 500px){
+    #ämtli .content-wrapper .user .todo label{
+        font-size: 1rem;
+    }
 }
 #ämtli .content-wrapper .user .todo .deadline {
     padding-right: 20px;

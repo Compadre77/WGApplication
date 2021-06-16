@@ -16,7 +16,15 @@ nav a#bill:after {
     width: 100%;
 }
 #finanzen .content-wrapper .bill >.bold{
-    margin-right: 20px;
+    margin: 0 20px 20px 20px;
+    width: 100%;
+}
+
+@media screen and (min-width: 500px){
+    #finanzen .content-wrapper .bill >.bold{
+        margin: 0 20px 0 0 ;
+        width: auto;
+    }
 }
 #finanzen .content-wrapper .bill .bill-title{
     padding: 16px 20px;
