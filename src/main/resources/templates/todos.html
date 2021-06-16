@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="../../static/todos.css" th:href="@{/todos.css}">
 <main id="ämtli">
     <h1>Ämtli</h1>
-    <h3>Verfasse deine Ämtli hier</h3>
+    <h3>Verteilt eure ToDos untereinander.</h3>
     <section class="content-wrapper">
-        <div th:each="user: ${allUsers}" th:class="${toDoService.findByCurrenAssignee(user.id).size() > 0} ? '': 'empty'">
+        <div th:each="user: ${allUsers}" th:class="${toDoService.findByCurrenAssignee(user.id).size() > 0} ? 'user': 'user empty'">
             <h2 th:text="${user.username}"></h2>
             <p th:if="${toDoService.findByCurrenAssignee(user.id).size() == 0}">Aktuell kein Ämtli zu erledigen.</p>
             <div th:each="todo: ${toDoService.findByCurrenAssignee(user.id)}" class="todo">
@@ -14,7 +14,7 @@
                     <input type="checkbox" name="isDone" th:id="'isDone-' + ${todo.id}" onchange="this.parentElement.submit()">
                     <label th:for="'isDone-' + ${todo.id}" th:text="${todo.description}"></label>
                 </form>
-                <p th:class="${todo.currentDeadline.before(#dates.createNow())} ? 'red' : ''" th:text="${#dates.format(todo.currentDeadline, 'dd.MM.yyyy')}"></p>
+                <p th:class="${todo.currentDeadline.before(#dates.createNow())} ? 'red deadline' : 'deadline'" th:text="${#dates.format(todo.currentDeadline, 'dd.MM.yyyy')}"></p>
                 <form th:action="'todos/löschen/' + @{${todo.id}}" method="post" class="delete-button-wrapper">
                     <Button class="btn" type="submit"><span class="icon ti-trash"></span></Button>
                 </form>
