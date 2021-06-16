@@ -6,10 +6,10 @@
     <h1>Ämtli</h1>
     <h3>Verteilt eure ToDos untereinander.</h3>
     <section class="content-wrapper">
-        <div th:each="user: ${allUsers}" th:class="${toDoService.findByCurrenAssignee(user.id).size() > 0} ? 'user': 'user empty'">
+        <div th:each="user: ${allUsers}" th:class="${todoService.findByCurrenAssignee(user.id).size() > 0} ? 'user': 'user empty'">
             <h2 th:text="${user.username}"></h2>
-            <p th:if="${toDoService.findByCurrenAssignee(user.id).size() == 0}">Aktuell kein Ämtli zu erledigen.</p>
-            <div th:each="todo: ${toDoService.findByCurrenAssignee(user.id)}" class="todo">
+            <p th:if="${todoService.findByCurrenAssignee(user.id).size() == 0}">Aktuell kein Ämtli zu erledigen.</p>
+            <div th:each="todo: ${todoService.findByCurrenAssignee(user.id)}" class="todo">
                 <form th:action="'todos/update/' + @{${todo.id}}" method="post" class="input-wrapper">
                     <input type="checkbox" name="isDone" th:id="'isDone-' + ${todo.id}" onchange="this.parentElement.submit()">
                     <label th:for="'isDone-' + ${todo.id}" th:text="${todo.description}"></label>

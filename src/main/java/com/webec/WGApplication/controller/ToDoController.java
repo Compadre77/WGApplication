@@ -20,17 +20,19 @@ public class ToDoController {
     private final ToDoService service;
     private final UserService userService;
 
-    public ToDoController(ToDoService service, UserService userService) { this.service = service; this.userService = userService;  }
+    public ToDoController(ToDoService service, UserService userService) {
+        this.service = service;
+        this.userService = userService;
+    }
 
     @GetMapping("/todos")
     public String todos(Model model){
         model.addAttribute("allTodos", service.getAllToDos());
         model.addAttribute("allUsers", userService.getAllUsers());
-        model.addAttribute("toDoService", service);
+        model.addAttribute("todoService", service);
         model.addAttribute("currentUser", ((User)SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId());
         return "todos";
     }
-
     @PostMapping("/todos")
     public String todos(@RequestParam @NotBlank String description,
                         @RequestParam @NotBlank int days,
