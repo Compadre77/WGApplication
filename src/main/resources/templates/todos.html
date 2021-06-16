@@ -2,31 +2,51 @@
 <html lang="de" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
 <title>WGApp | Ämtli</title>
 <link rel="stylesheet" href="../../static/todos.css" th:href="@{/todos.css}">
-<main>
-    <div th:each="todo: ${allTodos}">
-        <p th:text="${todo.description}"></p>
-        <p th:text="${todo.days}">Tage</p>
-        <p th:text="${todo.currentAssignee}"></p>
-        <p th:text="${todo.currentDeadline}"></p>
-    </div>
+<main id="ämtli">
+    <h1>Ämtli</h1>
+    <h3>Verfasse deine Ämtli hier</h3>
+    <section class="content-wrapper">
+        <div th:each="todo: ${allTodos}" th:class="${todo.done} ? 'isDone todo' : 'todo' ">
+            <div class="todo-username">
+                <h3 th:text="${todo.currentAssignee.username}"></h3>
+            </div>
+            <form th:action="'ämtli/update/' + @{${todo.id}}" method="post" class="input-wrapper">
+                <input type="checkbox" name="isDone" th:id="'isDone' + ${todo.id}"
+                       onchange="this.parentElement.submit()" th:checked="${todo.done}">
+                <label th:for="'isDone' + ${todo.id}" th:text="${todo.description}"></label>
+            </form>
+                <p class="bold" th:text="${todo.currentDeadline}"></p>
+        </div>
+        <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Ämtli hinzufügen
+        </button>
+    </section>
 
-    <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Todo hinzufügen</button>
     <section class="add-popup hidden popupJS">
         <form th:action="${add}" method="post">
             <h2>Neues Ämtli <span class="icon ti-close closePopupJS"></span></h2>
 
-            <label for="description" class="padded-label">Description:</label>
-            <input type="text" name="description" id="description" title="description must not be empty">
+            <div class="input-wrapper">
+                <label for="description" class="padded-label">Description:</label>
+                <input type="text" name="description" id="description" title="description must not be empty">
+            </div>
 
-            <label for="days" class="padded-label">Days:</label>
-            <input type="number" name="days" id="days" title="days must not be empty">
+            <div class="input-wrapper">
+                <label for="days" class="padded-label">Days:</label>
+                <input type="number" name="days" id="days" title="days must not be empty">
+            </div>
 
-            <label for="currentAssignee" class="padded-label">Current Assignee:</label>
-            <input type="text" name="currentAssignee" id="currentAssignee" title="current assignee must not be empty">
+            <div class="input-wrapper">
+                <label for="currentDeadline" class="padded-label">Current Deadline:</label>
+                <input type="date" name="currentDeadline" id="currentDeadline"
+                       title="current deadline must not be empty">
+            </div>
 
-            <label for="currentDeadline" class="padded-label">Current Deadline:</label>
-            <input type="date" name="currentDeadline" id="currentDeadline" title="current deadline must not be empty">
-
+            <div class="input-wrapper">
+                <div class="checkbox" th:each="user: ${users}" th:if="${currentUser != user.id}">
+                    <input type="checkbox" name="userIDs" th:value="${user.id}" th:id="${user.username}">
+                    <label th:for="${user.username}" th:text="${user.username}" class="padde-label"></label>
+                </div>
+            </div>
             <button type="submit">Erstellen</button>
         </form>
     </section>

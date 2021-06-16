@@ -1,9 +1,12 @@
 package com.webec.WGApplication.model.entity;
 
+import com.webec.WGApplication.model.UserEntry;
+
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +21,7 @@ public class ToDo {
     private int days;
     private int currentAssignee;
     private Date currentDeadline;
+    private boolean done;
 
     @ElementCollection
     private List<Integer> userIDs;
@@ -46,13 +50,21 @@ public class ToDo {
         return currentAssignee;
     }
 
-    public void setCurrentAssignee(int currentAssignee) {
-        this.currentAssignee = currentAssignee;
+    public void setCurrentAssignee(int currentAssigneeId) {
+        this.currentAssignee = currentAssigneeId;
     }
 
     public Date getCurrentDeadline() { return currentDeadline; }
 
     public void setCurrentDeadline(Date currentDeadline) { this.currentDeadline = currentDeadline; }
+
+    public boolean isDone() {
+        return done;
+    }
+
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
     public List<Integer> getUserIDs() {
         return userIDs;

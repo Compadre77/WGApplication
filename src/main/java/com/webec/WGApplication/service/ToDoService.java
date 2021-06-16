@@ -2,12 +2,14 @@ package com.webec.WGApplication.service;
 
 import com.webec.WGApplication.model.ToDoEntry;
 import com.webec.WGApplication.model.entity.ToDo;
+import com.webec.WGApplication.model.entity.User;
 import com.webec.WGApplication.model.repository.ToDoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
@@ -15,24 +17,66 @@ import static java.util.stream.Collectors.toList;
 @Service
 public class ToDoService {
     private final ToDoRepository repo;
+    private final UserService userService;
 
-    public ToDoService(ToDoRepository repo) { this.repo = repo; }
-
-    public List<ToDoEntry> getAllTodos() {
-        return repo.findAll().stream().map(t -> new ToDoEntry(
-                    t.getId(),
-                    t.getDescription(),
-                    t.getDays(),
-                    t.getCurrentAssignee(),
-                    t.getCurrentDeadline(),
-                    t.getUserIDs()))
-                .collect(toList());
+    public ToDoService(ToDoRepository repo, UserService userService) {
+        this.repo = repo;
+        this.userService = userService;
     }
 
-    public ToDo add(String description, int days, int currentAssignee, Date currentDeadline, int userID) {
-        List<Integer> userIDs = new ArrayList<>();
-        userIDs.add(userID);
-        var toDo = new ToDo();
-        return repo.save(toDo); // 'save' might return new object
+    public List<ToDoEntry> getAllToDos() {
+        return repo.findAll().stream()
+                .map(t -> createTodoEntry(t))
+                .collect(Collectors.toList());
     }
+
+    public List<ToDoEntry> getTodosByCurrentAssignee(int id){
+        return repo.findByCurrentAssignee(id).stream()
+                .map(t -> createTodoEntry(t))
+                .collect(Collectors.toUnmodifiableList());
+    }
+
+    private ToDoEntry createTodoEntry(ToDo t){
+        var entry = new ToDoEntry(
+                t.getId(),
+                t.getDescription(),
+                t.getDays(),
+                t.getCurrentAssignee(),
+                t.getCurrentDeadline(),
+                t.isDone(),
+                t.getUserIDs());
+        entry.users = new ArrayList<>();
+        for (int i = 0; i < t.getUserIDs().size(); i++){
+            entry.users.add(userService.getUserById(t.getUserIDs().get(i)));
+        }
+        entry.currentAssignee = userService.getUserById(t.getCurrentAssignee());
+        return entry;
+    }
+
+    public ToDo add(
+            int id,
+            String description,
+            int days,
+            int currentAssigneeId,
+            Date currentDeadline,
+            boolean done,
+            int[] userIDs
+    ) {
+        List<Integer> users = new ArrayList<>();
+        for (int i = 0; i < userIDs.length; i++) {
+            users.add(userIDs[i]);
+        }
+        var todo = new ToDo();
+        todo.setDescription(description);
+        todo.setDays(days);
+        todo.setCurrentAssignee(currentAssigneeId);
+        todo.setCurrentDeadline(currentDeadline);
+        todo.setDone(done);
+        todo.setUserIDs(users);
+        return repo.save(todo);
+    }
+
+    public Optional<ToDo> findToDo(int id) { return repo.findById(id); }
+
+    public void delete(ToDo todo) { repo.delete(todo); }
 }
