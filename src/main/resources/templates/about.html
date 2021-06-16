@@ -2,7 +2,7 @@
 <html lang="de" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
 <title>WGApp | About</title>
 <link rel="stylesheet" href="../../static/about.css" th:href="@{/about.css}">
-<main>
+<main id="about-page">
     <h1>About</h1>
     <h3>Hier kannst du nachlesen, was diese Applikation alles kann.</h3>
     <h4>User</h4>
@@ -11,6 +11,10 @@
     <p class="red">Achtung: diese Applikation wurde nicht entwickelt um mehrere WGs anzulgen. Sie wurde spezifisch für eine WG entwickelt.</p>
     <h4>ToDos</h4>
     <p>Jeder in der WG kann Ämtlis erstellen.</p>
-    <p>Jedes Dieser Ämtli hat ein User dem es aktuelll zugewiesen ist. Ausserdem wird die Deadlin ausgerechnet, in der es erledigt sien muss. Dies passiert mithilfe der altenDeadline und den Anzahl intervall Tagen.</p>
+    <p>Jedes Dieser Ämtli hat ein User dem es aktuelll zugewiesen ist. Ausserdem wird die Deadlin ausgerechnet, in der es erledigt sien muss. Dies passiert mithilfe der alten Deadline und den Anzahl intervall Tagen.</p>
+    <h4>Einkauf</h4>
+    <p>In der Applikation kann eine Einkaufsliste geführt werden. Die Einträge könenn von allen erfasst werden und auch abgehakt, sobald etwas eingekauft wurde.</p>
+    <h4>Finanzen</h4>
+    <p>Bei den Finanzen können Rechnungen erstellt werden sobald etwas eingekauft wurde. Es kann eingetragen werden wer alles beteiligt ist und dann wird ausgerechnet, wer wieviel bezahlen muss.</p>
 </main>
 </html>
