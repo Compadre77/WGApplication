@@ -5,7 +5,7 @@
     <main id="profile">
         <h1 th:text="'Hallo '+${currentUser}"> </h1>
         <h3>Hier hast du eine Übersicht über alle deine Daten.</h3>
-        <section class="content-wrapper">
+        <div class="content-wrapper">
             <article id="todos">
                 <h2>Deine Todos</h2>
 
@@ -31,6 +31,6 @@
                     <p class="bold" th:text="'CHF ' + ${#numbers.formatDecimal((bill.amount / (#lists.size(bill.users) + 1) * #lists.size(bill.users)), 1, 'DEFAULT', 2, 'DEFAULT')}"></p>
                 </div>
             </article>
-        </section>
+        </div>
     </main>
 </html>

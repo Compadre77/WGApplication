@@ -6,7 +6,7 @@
     <h1>Finanzen</h1>
     <h3>Erfasse deine Einkäufe hier.</h3>
     <section class="content-wrapper">
-        <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Finanzeintrag
+        <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span><br/>Finanzeintrag
             hinzufügen
         </button>
         <div class="bill" th:each="bill: ${allBills}">
@@ -26,7 +26,7 @@
         </div>
     </section>
     <section class="add-popup hidden popupJS">
-        <form th:action="${add}" method="post">
+        <form th:action="'finanzen'" method="post">
             <h2>Neuer Finanzeintrag <span class="icon ti-close closePopupJS"></span></h2>
 
             <div class="input-wrapper">
