@@ -1,5 +1,7 @@
 package com.webec.WGApplication.model.entity;
 
+import com.webec.WGApplication.model.UserEntry;
+
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,8 +48,8 @@ public class ToDo {
         return currentAssignee;
     }
 
-    public void setCurrentAssignee(int currentAssignee) {
-        this.currentAssignee = currentAssignee;
+    public void setCurrentAssignee(int currentAssigneeId) {
+        this.currentAssignee = currentAssigneeId;
     }
 
     public Date getCurrentDeadline() { return currentDeadline; }

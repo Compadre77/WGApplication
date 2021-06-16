@@ -2,45 +2,104 @@ package com.webec.WGApplication.service;
 
 import com.webec.WGApplication.model.ToDoEntry;
 import com.webec.WGApplication.model.entity.ToDo;
+import com.webec.WGApplication.model.entity.User;
 import com.webec.WGApplication.model.repository.ToDoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
 @Service
 public class ToDoService {
     private final ToDoRepository repo;
+    private final UserService userService;
 
-    public ToDoService(ToDoRepository repo) { this.repo = repo; }
-
-    public List<ToDoEntry> getAllTodos() {
-        return repo.findAll().stream().map(t -> createToDoEntry(t))
-                .collect(toList());
+    public ToDoService(ToDoRepository repo, UserService userService) {
+        this.repo = repo;
+        this.userService = userService;
     }
+
     public List<ToDoEntry> getToDosByAssginee(int id) {
-        return repo.findByCurrentAssignee(id).stream().map(t -> createToDoEntry(t))
-                .collect(toList());
+        return repo.findByCurrentAssignee(id).stream().map(t -> createTodoEntry(t)).collect(toList());
     }
 
-    private ToDoEntry createToDoEntry(ToDo t){
-        return new ToDoEntry(
+    public List<ToDoEntry> getAllToDos() {
+        return repo.findAll().stream()
+                .map(t -> createTodoEntry(t))
+                .collect(Collectors.toList());
+    }
+
+    private ToDoEntry createTodoEntry(ToDo t){
+        var entry = new ToDoEntry(
                 t.getId(),
                 t.getDescription(),
                 t.getDays(),
                 t.getCurrentAssignee(),
                 t.getCurrentDeadline(),
                 t.getUserIDs());
+        entry.users = new ArrayList<>();
+        for (int i = 0; i < t.getUserIDs().size(); i++){
+            entry.users.add(userService.getUserById(t.getUserIDs().get(i)));
+        }
+        entry.currentAssignee = userService.getUserById(t.getCurrentAssignee());
+        return entry;
     }
 
-    public ToDo add(String description, int days, int currentAssignee, Date currentDeadline, int userID) {
-        List<Integer> userIDs = new ArrayList<>();
-        userIDs.add(userID);
-        var toDo = new ToDo();
-        return repo.save(toDo); // 'save' might return new object
+    public ToDo add(
+            String description,
+            int days,
+            Date currentDeadline,
+            int curreentAssignee,
+            int[] userIDs
+    ) {
+        List<Integer> users = new ArrayList<>();
+        users.add(curreentAssignee);
+        for (int i = 0; i < userIDs.length; i++) {
+            users.add(userIDs[i]);
+        }
+        var todo = new ToDo();
+        todo.setDescription(description);
+        todo.setDays(days);
+        todo.setCurrentAssignee(curreentAssignee);
+        todo.setCurrentDeadline(currentDeadline);
+        todo.setUserIDs(users);
+        return repo.save(todo);
+    }
+
+    public Optional<ToDo> findToDo(int id) { return repo.findById(id); }
+
+    public List<ToDo> findByCurrenAssignee(int id) { return repo.findByCurrentAssignee(id); }
+
+    public void delete(ToDo todo) { repo.delete(todo); }
+
+    public void updateTodo(ToDo todo) {
+        // Save userIds in correct order
+        List<Integer> userIds = todo.getUserIDs();
+        for (int i = 0; i < userIds.size(); i++) {
+            int id = userIds.get(i);
+            if (id == todo.getCurrentAssignee() && userIds.size() - 1 > i) {
+                todo.setCurrentAssignee(userIds.get(i + 1));
+                break;
+            }
+            else if (id == todo.getCurrentAssignee()) {
+                todo.setCurrentAssignee(userIds.get(0));
+                break;
+            }
+        }
+
+        // Set new Deadline
+        Calendar c = Calendar.getInstance();
+        c.setTime(todo.getCurrentDeadline());
+        c.add(Calendar.DATE, todo.getDays());
+
+        todo.setCurrentDeadline(c.getTime());
+        todo.setUserIDs(userIds);
+        repo.save(todo);
     }
 
 }

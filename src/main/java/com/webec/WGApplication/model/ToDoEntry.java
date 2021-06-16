@@ -7,22 +7,25 @@ public class ToDoEntry {
     public int id;
     public String description;
     public int days;
-    public int currentAssignee;
+    public int currentAssigneeId;
+    public UserEntry currentAssignee;
     public Date currentDeadline;
     public List<Integer> userIDs;
+    public List<UserEntry> users;
+
 
     public ToDoEntry(
             int id,
             String description,
             int days,
-            int currentAssignee,
+            int currentAssigneeId,
             Date currentDeadline,
             List<Integer> userIDs
     ){
         this.id = id;
         this.description = description;
         this.days = days;
-        this.currentAssignee = currentAssignee;
+        this.currentAssigneeId = currentAssigneeId;
         this.currentDeadline = currentDeadline;
         this.userIDs = userIDs;
     }

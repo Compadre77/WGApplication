@@ -1,0 +1,43 @@
+nav a#todo {
+    color: #198EE0;
+}
+nav a#todo:after {
+    background-color: #E7F3FC;
+}
+#ämtli .content-wrapper .user {
+    margin: 50px 0 80px 0;
+}
+#ämtli .content-wrapper .user .todo{
+    align-items: center;
+    border-bottom: 1px solid #d1d1d1;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+#ämtli .content-wrapper .user.empty{
+    color: #757575;
+}
+#ämtli .content-wrapper .user .todo label{
+    font-size: 1rem;
+}
+#ämtli .content-wrapper .user .todo .deadline {
+    padding-right: 20px;
+}
+#ämtli .content-wrapper .user h2 {
+    margin-bottom: 30px;
+}
+#ämtli .content-wrapper .user .todo .input-wrapper {
+    padding-right: 20px;
+    width: 100%;
+}
+#ämtli .content-wrapper .add-popup-open-btn{
+    margin: 50px 0 20px 0;
+    padding: 20px 0;
+    width: 100%;
+}
+#ämtli .content-wrapper .delete-button-wrapper{
+    align-items: center;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 20px;
+}
