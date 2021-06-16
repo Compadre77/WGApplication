@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="de" xmlns:th="http://www.thymeleaf.org" th:fragment="html(title, style, content)">
-    <head th:fragment="html(title, style)" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="html(title, style)" xmlns:th="http://www.w3.org/1999/xhtml">
         <title th:replace="${title}">WGApplication</title>
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -19,42 +19,47 @@
         <link rel="stylesheet" href="../../static/general.css" th:href="@{/general.css}">
         <link th:replace="${style}">
     </head>
-    <body>
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="/" id="home">
-                            <span class="icon ti-user"></span>
-                            <span>Profile</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/einkauf"  id="purchase">
-                            <span class="icon ti-shopping-cart"></span>
-                            <span>Einkauf</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/ämtli" id="todo">
-                            <span class="icon ti-check-box"></span>
-                            <span>Ämtli</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/finanzen" id="bill">
-                            <span class="icon ti-receipt"></span>
-                            <span>Finanzen</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <main th:replace="${content}">
-            <p>Content</p>0
-        </main>
-        <footer>
-        </footer>
-        <script type="module" src="./js/main.js" defer></script>
-    </body>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li>
+                <a href="/" id="home">
+                    <span class="icon ti-user"></span>
+                    <span>Profile</span>
+                </a>
+            </li>
+            <li>
+                <a href="/einkauf"  id="purchase">
+                    <span class="icon ti-shopping-cart"></span>
+                    <span>Einkauf</span>
+                </a>
+            </li>
+            <li>
+                <a href="/todos" id="todo">
+                    <span class="icon ti-check-box"></span>
+                    <span>Ämtli</span>
+                </a>
+            </li>
+            <li>
+                <a href="/finanzen" id="bill">
+                    <span class="icon ti-receipt"></span>
+                    <span>Finanzen</span>
+                </a>
+            </li>
+        </ul>
+        <div>
+            <a href="/about" id="about">
+                <span class="icon ti-info-alt"></span>
+                <span>Über uns</span>
+            </a>
+        </div>
+    </nav>
+</header>
+<main th:replace="${content}">
+</main>
+<footer>
+</footer>
+<script type="module" src="./js/main.js"></script>
+</body>
 </html>

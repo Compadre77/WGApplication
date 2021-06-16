@@ -28,6 +28,17 @@ public class BillService {
                 .collect(Collectors.toList());
     }
 
+    public List<BillEntry> getBillsByCreator(int id) {
+        return repo.findByCreator(id).stream()
+                .map(b -> createBillEntry(b))
+                .collect(Collectors.toList());
+    }
+
+    public List<BillEntry> getBillsByUser(int id) {
+        return repo.findByUserIDsContaining(id).stream()
+                .map(b -> createBillEntry(b))
+                .collect(Collectors.toList());
+    }
     private BillEntry createBillEntry(Bill b) {
         var entry = new BillEntry(
                 b.getId(),

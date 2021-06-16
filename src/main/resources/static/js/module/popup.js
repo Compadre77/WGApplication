@@ -8,7 +8,6 @@ export default function initPopups() {
     initButton(OPEN_POPUP_BUTTON)
     initButton(CLOSE_POPUP_BUTTON)
     function initButton(button) {
-        console.log(button)
         button.addEventListener('click', function(){
             POPUP.classList.toggle('hidden')
             document.querySelector('body').classList.toggle('overflowHidden')

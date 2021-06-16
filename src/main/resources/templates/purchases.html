@@ -5,8 +5,8 @@
 <main id="einkauf">
     <h1>Einkäufe</h1>
     <h3>Erfasse deine Einkäufe hier.</h3>
-    <section class="content-wrapper">
-        <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span></br>Einkauf hinzufügen</button>
+    <div class="content-wrapper">
+        <button class="btn add-popup-open-btn openPopupJS"><span class="icon ti-plus"></span><br/>Einkauf hinzufügen</button>
         <div th:each="purchase: ${allPurchases}" th:class="${purchase.checked} ? 'isChecked purchase' : 'purchase' ">
             <form th:action="'einkauf/update/' + @{${purchase.id}}" method="post" class="input-wrapper"  th:id="'setChecked-' + ${purchase.id}">
                 <input type="checkbox" name="isChecked" th:id="'isChecked' + ${purchase.id}" onchange="this.parentElement.submit()" th:checked="${purchase.checked}">
@@ -19,10 +19,10 @@
                 </form>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section class="add-popup hidden popupJS">
-        <form th:action="${add}" method="post">
+    <div class="add-popup hidden popupJS">
+        <form th:action="'einkauf'" method="post">
             <h2>Neuen Eintrag <span class="icon ti-close closePopupJS"></span></h2>
 
             <div class="input-wrapper">
@@ -35,8 +35,8 @@
                 <input required type="number" name="amount" id="amount" title="Menge darf nicht leer bleiben.">
             </div>
 
-            <button type="submit">Erstellen</button>
+            <button type="submit" class="btn">Erstellen</button>
         </form>
-    </section>
+    </div>
 </main>
 </html>

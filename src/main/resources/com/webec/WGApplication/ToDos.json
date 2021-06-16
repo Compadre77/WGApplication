@@ -5,7 +5,6 @@
     "days": 7,
     "currentAssignee": 1,
     "currentDeadline": "2012-04-23T18:25:43.511Z",
-    "done": false,
     "userIDs": [2,3,4]
   },
   {
@@ -14,7 +13,6 @@
     "days": 7,
     "currentAssignee": 2,
     "currentDeadline": "2012-04-23T18:25:43.511Z",
-    "done": false,
     "userIDs": [3,4,1]
   },
   {
@@ -23,7 +21,6 @@
     "days": 7,
     "currentAssignee": 3,
     "currentDeadline": "2012-04-23T18:25:43.511Z",
-    "done": false,
     "userIDs": [4,1,2]
   },
   {
@@ -32,7 +29,6 @@
     "days": 7,
     "currentAssignee": 4,
     "currentDeadline": "2012-04-23T18:25:43.511Z",
-    "done": false,
     "userIDs": [1,2,3]
   }
 ]
