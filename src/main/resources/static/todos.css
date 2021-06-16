@@ -12,7 +12,7 @@ nav a#todo:after {
     border-bottom: 1px solid #d1d1d1;
     display: flex;
     justify-content: space-between;
-    padding: 16px 0;
+    padding: 10px 0;
 }
 #ämtli .content-wrapper .user.empty{
     color: #757575;

@@ -22,3 +22,18 @@ nav a#home:after {
     justify-content: space-between;
     padding: 16px;
 }
+
+#profile #todos .todo{
+    align-items: center;
+    border-bottom: 1px solid #d1d1d1;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+}
+#profile #todos .todo label{
+    font-size: 1rem;
+}
+#profile #todos .todo .input-wrapper {
+    padding-right: 20px;
+    width: 100%;
+}
