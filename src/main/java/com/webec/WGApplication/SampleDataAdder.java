@@ -39,19 +39,19 @@ public class SampleDataAdder {
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) throws IOException {
         if (billRepo.findAll().isEmpty()) {
-            var sampleContacts = mapper.readValue(SampleDataAdder.class.getResource(BILLS_JSON_FILE),
+            var sampleBills = mapper.readValue(SampleDataAdder.class.getResource(BILLS_JSON_FILE),
                     new TypeReference<List<Bill>>() {});
-            billRepo.saveAll(sampleContacts);
+            billRepo.saveAll(sampleBills);
         }
         if (purchaseRepo.findAll().isEmpty()) {
-            var sampleContacts = mapper.readValue(SampleDataAdder.class.getResource(PURCHASES_JSON_FILE),
+            var samplePurchases = mapper.readValue(SampleDataAdder.class.getResource(PURCHASES_JSON_FILE),
                     new TypeReference<List<Purchase>>() {});
-            purchaseRepo.saveAll(sampleContacts);
+            purchaseRepo.saveAll(samplePurchases);
         }
         if (toDoRepo.findAll().isEmpty()) {
-            var sampleContacts = mapper.readValue(SampleDataAdder.class.getResource(TODO_JSON_FILE),
+            var sampleTodos = mapper.readValue(SampleDataAdder.class.getResource(TODO_JSON_FILE),
                     new TypeReference<List<ToDo>>() {});
-            toDoRepo.saveAll(sampleContacts);
+            toDoRepo.saveAll(sampleTodos);
         }
     }
 }

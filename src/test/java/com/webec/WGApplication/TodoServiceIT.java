@@ -7,30 +7,39 @@ import com.webec.WGApplication.model.entity.ToDo;
 import com.webec.WGApplication.model.repository.ToDoRepository;
 import com.webec.WGApplication.service.ToDoService;
 import com.webec.WGApplication.service.UserService;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
 
 import java.io.IOException;
 import java.util.List;
 
 import static com.webec.WGApplication.SampleDataAdder.TODO_JSON_FILE;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@DataJpaTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TodoServiceIT {
 
-    ToDoService service;
-    UserService userService;
+    @LocalServerPort
+    int port;
 
-    TodoServiceIT(@Autowired ToDoRepository repo) throws IOException {
-        var mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        var sampleContacts = mapper.readValue(SampleDataAdder.class.getResource(TODO_JSON_FILE),
-                new TypeReference<List<ToDo>>() {});
-        ToDoRepository mockRepo = mock(ToDoRepository.class);
 
-        when(mockRepo.findAll()).thenReturn(sampleContacts);
+    @Test
+    public void checkbox(){
+        var driver = new HtmlUnitDriver();
+        driver.navigate().to("http://localhost:" + port);
 
-        this.service = new ToDoService(mockRepo,userService);
+        var checkbox = driver.findElements(By.cssSelector("input[type=checkbox]"));
+        assertEquals(0, checkbox.size());
     }
 }
