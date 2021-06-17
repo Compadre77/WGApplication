@@ -48,9 +48,13 @@ public class ToDoServiceTest {
 
         userRepository = userRepo;
         toDoRepository = todoRepo;
+        System.out.println(userRepo.findAll().size());
+        System.out.println(todoRepo.findAll().size());
 
         userService = new UserService(userRepo);
         service = new ToDoService(todoRepo, userService);
+        System.out.println(userService.getAllUsers().size());
+        System.out.println(service.getAllToDos().size());
     }
 
     @Test

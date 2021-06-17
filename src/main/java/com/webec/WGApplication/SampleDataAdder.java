@@ -36,7 +36,6 @@ public class SampleDataAdder {
         this.purchaseRepo = purchaseRepo;
         this.toDoRepo = toDoRepo;
     }
-
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) throws IOException {
         if (billRepo.findAll().isEmpty()) {
