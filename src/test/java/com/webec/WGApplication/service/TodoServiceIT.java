@@ -1,4 +1,4 @@
-package com.webec.WGApplication;
+package com.webec.WGApplication.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;

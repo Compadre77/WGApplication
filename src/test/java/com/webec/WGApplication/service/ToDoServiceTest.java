@@ -1,7 +1,8 @@
-package com.webec.WGApplication;
+package com.webec.WGApplication.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.webec.WGApplication.SampleDataAdder;
 import com.webec.WGApplication.model.entity.ToDo;
 import com.webec.WGApplication.model.entity.User;
 import com.webec.WGApplication.model.repository.ToDoRepository;
@@ -17,40 +18,44 @@ import java.util.Set;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 import static com.webec.WGApplication.SampleDataAdder.TODO_JSON_FILE;
+import static com.webec.WGApplication.SampleDataAdder.USER_JSON_FILE;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class ToDoServiceTest {
 
-    ToDoService service;
+    ToDoRepository toDoRepository;
+    UserRepository userRepository;
     UserService userService;
-    User user = new User("Test", "test", Set.of("ROLE_ADMIN"));
-    List<User> sampleUser = List.of(user);
+    ToDoService service;
 
     public ToDoServiceTest() throws IOException {
-        var todoMapper = new ObjectMapper().configure(FAIL_ON_UNKNOWN_PROPERTIES, false);
+        var mapper = new ObjectMapper().configure(FAIL_ON_UNKNOWN_PROPERTIES, false);
+
         var sampleToDosFile = SampleDataAdder.class.getResource(TODO_JSON_FILE);
-        var sampleToDos = todoMapper.readValue(sampleToDosFile, new TypeReference<List<ToDo>>() {
+        var sampleToDos = mapper.readValue(sampleToDosFile, new TypeReference<List<ToDo>>() {
         });
 
         // create fake repo
         var todoRepo = mock(ToDoRepository.class);
         when(todoRepo.findAll()).thenReturn(sampleToDos);
 
-//        var userMapper = new ObjectMapper().configure(FAIL_ON_UNKNOWN_PROPERTIES, false);
+        var sampleUsersFile = SampleDataAdder.class.getResource(USER_JSON_FILE);
+        var sampleUsers = mapper.readValue(sampleUsersFile, new TypeReference<List<User>>() {
+        });
         UserRepository userRepo = mock(UserRepository.class);
-        when(userRepo.findAll()).thenReturn(sampleUser);
-        this.userService = new UserService(userRepo);
+        when(userRepo.findAll()).thenReturn(sampleUsers);
 
-        service = new ToDoService(todoRepo,userService);
+        userRepository = userRepo;
+        toDoRepository = todoRepo;
+
+        userService = new UserService(userRepo);
+        service = new ToDoService(todoRepo, userService);
     }
 
     @Test
     public void todoTest(){
         var todoList= service.getAllToDos();
-        for (int i =0; i<todoList.size();i++){
-            System.out.println("Test");
-        }
         Assert.assertTrue(true);
     }
 }

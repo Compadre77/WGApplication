@@ -23,6 +23,7 @@ public class SampleDataAdder {
     public static final String BILLS_JSON_FILE = "bills.json";
     public static final String PURCHASES_JSON_FILE = "purchases.json";
     public static final String TODO_JSON_FILE = "ToDos.json";
+    public static final String USER_JSON_FILE = "users.json";
 
     private final ObjectMapper mapper;
     private final BillRepository billRepo;
