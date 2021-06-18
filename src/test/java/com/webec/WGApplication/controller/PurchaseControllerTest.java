@@ -15,6 +15,7 @@ import org.xmlunit.util.Mapper;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 import static org.mockito.Mockito.mock;
@@ -33,6 +34,7 @@ public class PurchaseControllerTest {
         // create fake (mock) repo that returns the sample contacts from the file
         var repo = mock(PurchaseRepository.class);
         when(repo.findAll()).thenReturn(testPurchases);
+        when(repo.findById(1)).thenReturn(Optional.of(testPurchases.get(0)));
 
         this.service = new PurchaseService(repo);
         this.controller= new PurchaseController(service);
@@ -45,4 +47,14 @@ public class PurchaseControllerTest {
         controller.purchases(model);
         Assert.assertEquals(14, service.getAllPurchases().size());
     }
+
+    @Test
+    public void testeDeletePurchase(){
+        var allPurchases = service.getAllPurchases();
+        Assert.assertNotNull(allPurchases);
+        controller.deletePurchase(allPurchases.get(0).id);
+        Assert.assertFalse(allPurchases.isEmpty());
+        Assert.assertEquals(14, allPurchases.size());
+    }
+
 }
