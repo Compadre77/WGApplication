@@ -11,7 +11,7 @@ public class AboutControllerTest {
     Model model = new ConcurrentModel();
 
     @Test
-    public void testTodos(){
+    public void testAbout(){
         Assert.assertEquals("about", controller.todos(model));
     }
 }

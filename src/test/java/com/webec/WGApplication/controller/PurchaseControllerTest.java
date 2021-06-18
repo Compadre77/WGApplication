@@ -3,9 +3,11 @@ package com.webec.WGApplication.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webec.WGApplication.SampleDataAdder;
+import com.webec.WGApplication.model.PurchaseEntry;
 import com.webec.WGApplication.model.entity.Purchase;
 import com.webec.WGApplication.model.repository.PurchaseRepository;
 import com.webec.WGApplication.service.PurchaseService;
+import org.hamcrest.collection.IsEmptyCollection;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -42,19 +44,11 @@ public class PurchaseControllerTest {
 
     Model model = new ConcurrentModel();
 
-    @Test
-    public void testNumberOfPurchases(){
-        controller.purchases(model);
-        Assert.assertEquals(14, service.getAllPurchases().size());
-    }
 
     @Test
-    public void testeDeletePurchase(){
-        var allPurchases = service.getAllPurchases();
-        Assert.assertNotNull(allPurchases);
-        controller.deletePurchase(allPurchases.get(0).id);
-        Assert.assertFalse(allPurchases.isEmpty());
-        Assert.assertEquals(14, allPurchases.size());
+    public void testPurchaseCount(){
+        controller.purchases(model);
+        Assert.assertEquals(14, model.getAttribute("purchaseCount"));
     }
 
 }
