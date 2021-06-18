@@ -1,27 +1,32 @@
-package com.webec.WGApplication.service;
+package com.webec.WGApplication.controller;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.webec.WGApplication.SampleDataAdder;
 import com.webec.WGApplication.model.entity.Purchase;
 import com.webec.WGApplication.model.repository.PurchaseRepository;
-import org.junit.jupiter.api.Test;
+import com.webec.WGApplication.service.PurchaseService;
+import org.junit.Assert;
+import org.junit.Test;
+import org.mockito.Mockito;
+import org.springframework.ui.ConcurrentModel;
+import org.springframework.ui.Model;
+import org.xmlunit.util.Mapper;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
-import static java.util.stream.IntStream.rangeClosed;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class PurchaseServiceTest {
+public class PurchaseControllerTest {
 
     PurchaseService service;
+    PurchaseController controller;
 
-    PurchaseServiceTest() throws IOException {
+    public PurchaseControllerTest() throws IOException {
         var mapper = new ObjectMapper().configure(FAIL_ON_UNKNOWN_PROPERTIES, false);
         var testPurchaseFile = SampleDataAdder.class.getResource(SampleDataAdder.PURCHASES_JSON_FILE);
         var testPurchases = mapper.readValue(testPurchaseFile, new TypeReference<List<Purchase>>() {});
@@ -31,30 +36,25 @@ public class PurchaseServiceTest {
         when(repo.findAll()).thenReturn(testPurchases);
         when(repo.findById(1)).thenReturn(Optional.of(testPurchases.get(0)));
 
-        service = new PurchaseService(repo);
+        this.service = new PurchaseService(repo);
+        this.controller= new PurchaseController(service);
+    }
+
+    Model model = new ConcurrentModel();
+
+    @Test
+    public void testNumberOfPurchases(){
+        controller.purchases(model);
+        Assert.assertEquals(14, service.getAllPurchases().size());
     }
 
     @Test
-    void testPurchaseIds(){
-        var purchaseList = service.getAllPurchases();
-        assertNotNull(purchaseList);
-        var ids = purchaseList.stream()
-                .mapToInt(p -> p.id)
-                .toArray();
-        assertArrayEquals(rangeClosed(1, 14).toArray(), ids);
+    public void testeDeletePurchase(){
+        var allPurchases = service.getAllPurchases();
+        Assert.assertNotNull(allPurchases);
+        controller.deletePurchase(allPurchases.get(0).id);
+        Assert.assertFalse(allPurchases.isEmpty());
+        Assert.assertEquals(14, allPurchases.size());
     }
 
-    @Test
-    void testPurchaseValues(){
-
-        var purchaseList = service.getAllPurchases();
-        assertNotNull(purchaseList);
-        assertFalse(purchaseList.isEmpty());
-        var values = purchaseList.get(0);
-        assertEquals(1, values.id);
-        assertEquals(1, values.amount);
-        assertEquals("Butter",  values.description);
-        assertFalse(values.checked);
-
-    }
 }
