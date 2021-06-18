@@ -33,7 +33,15 @@ public class User implements UserDetails {
         this.username = requireNonNull(username);
         this.password = requireNonNull(password);
         this.roles = requireNonNull(roles);
-    }   
+    }
+
+    public Set<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public boolean isAccountNonExpired() {

@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
@@ -46,11 +47,15 @@ public class ToDoServiceTest {
         UserRepository userRepo = mock(UserRepository.class);
         when(userRepo.findAll()).thenReturn(sampleUsers);
 
-        userRepository = userRepo;
-        toDoRepository = todoRepo;
+        this.userRepository = userRepo;
+        this.toDoRepository = todoRepo;
+        System.out.println(userRepo.findAll().size());
+        System.out.println(todoRepo.findAll().size());
 
-        userService = new UserService(userRepo);
-        service = new ToDoService(todoRepo, userService);
+        userService = new UserService(userRepository);
+        service = new ToDoService(toDoRepository, userService);
+        System.out.println(userRepository.findAll().size());
+        System.out.println(toDoRepository.findAll().size());
     }
 
     @Test

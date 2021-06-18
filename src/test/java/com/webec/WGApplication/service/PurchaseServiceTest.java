@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 import static java.util.stream.IntStream.rangeClosed;
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -29,12 +29,32 @@ public class PurchaseServiceTest {
         // create fake (mock) repo that returns the sample contacts from the file
         var repo = mock(PurchaseRepository.class);
         when(repo.findAll()).thenReturn(testPurchases);
+        when(repo.findById(1)).thenReturn(Optional.of(testPurchases.get(0)));
+
         service = new PurchaseService(repo);
     }
 
     @Test
-    void contactListIds() {
-        var purchasesList = service.getAllPurchases();
-        assertNotNull(purchasesList);
+    void testPurchaseIds(){
+        var purchaseList = service.getAllPurchases();
+        assertNotNull(purchaseList);
+        var ids = purchaseList.stream()
+                .mapToInt(p -> p.id)
+                .toArray();
+        assertArrayEquals(rangeClosed(1, 14).toArray(), ids);
+    }
+
+    @Test
+    void testPurchaseValues(){
+
+        var purchaseList = service.getAllPurchases();
+        assertNotNull(purchaseList);
+        assertFalse(purchaseList.isEmpty());
+        var values = purchaseList.get(0);
+        assertEquals(1, values.id);
+        assertEquals(1, values.amount);
+        assertEquals("Butter",  values.description);
+        assertFalse(values.checked);
+
     }
 }
