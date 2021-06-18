@@ -23,6 +23,7 @@ public class SampleDataAdder {
     public static final String BILLS_JSON_FILE = "bills.json";
     public static final String PURCHASES_JSON_FILE = "purchases.json";
     public static final String TODO_JSON_FILE = "ToDos.json";
+    public static final String USER_JSON_FILE = "users.json";
 
     private final ObjectMapper mapper;
     private final BillRepository billRepo;
@@ -35,23 +36,22 @@ public class SampleDataAdder {
         this.purchaseRepo = purchaseRepo;
         this.toDoRepo = toDoRepo;
     }
-
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent event) throws IOException {
         if (billRepo.findAll().isEmpty()) {
-            var sampleContacts = mapper.readValue(SampleDataAdder.class.getResource(BILLS_JSON_FILE),
+            var sampleBills = mapper.readValue(SampleDataAdder.class.getResource(BILLS_JSON_FILE),
                     new TypeReference<List<Bill>>() {});
-            billRepo.saveAll(sampleContacts);
+            billRepo.saveAll(sampleBills);
         }
         if (purchaseRepo.findAll().isEmpty()) {
-            var sampleContacts = mapper.readValue(SampleDataAdder.class.getResource(PURCHASES_JSON_FILE),
+            var samplePurchases = mapper.readValue(SampleDataAdder.class.getResource(PURCHASES_JSON_FILE),
                     new TypeReference<List<Purchase>>() {});
-            purchaseRepo.saveAll(sampleContacts);
+            purchaseRepo.saveAll(samplePurchases);
         }
         if (toDoRepo.findAll().isEmpty()) {
-            var sampleContacts = mapper.readValue(SampleDataAdder.class.getResource(TODO_JSON_FILE),
+            var sampleTodos = mapper.readValue(SampleDataAdder.class.getResource(TODO_JSON_FILE),
                     new TypeReference<List<ToDo>>() {});
-            toDoRepo.saveAll(sampleContacts);
+            toDoRepo.saveAll(sampleTodos);
         }
     }
 }

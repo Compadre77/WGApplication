@@ -2,19 +2,15 @@
 <html lang="de" xmlns:th="http://www.thymeleaf.org" th:replace="fragments/layout::html(~{::title},~{::link},~{::main})">
 <title>WGApp | About</title>
 <link rel="stylesheet" href="../../static/about.css" th:href="@{/about.css}">
-<main id="about-page">
-    <h1>About</h1>
+<main>
+    <h1 id="about-title">About</h1>
     <h3>Hier kannst du nachlesen, was diese Applikation alles kann.</h3>
     <h4>User</h4>
-    <p>Die Applikation wurde entwickelt für eine WG.
+    <p class="description">Die Applikation wurde entwickelt für eine WG.
         Die Verschiedenen Benutzer wurden im vorhinein angelegt und können bis jetzt bloss im Code bearbeitet werden.</p>
-    <p class="red">Achtung: diese Applikation wurde nicht entwickelt um mehrere WGs anzulgen. Sie wurde spezifisch für eine WG entwickelt.</p>
+    <p class="description red">Achtung: diese Applikation wurde nicht entwickelt um mehrere WGs anzulgen. Sie wurde spezifisch für eine WG entwickelt.</p>
     <h4>ToDos</h4>
-    <p>Jeder in der WG kann Ämtlis erstellen.</p>
-    <p>Jedes Dieser Ämtli hat ein User dem es aktuelll zugewiesen ist. Ausserdem wird die Deadlin ausgerechnet, in der es erledigt sien muss. Dies passiert mithilfe der alten Deadline und den Anzahl intervall Tagen.</p>
-    <h4>Einkauf</h4>
-    <p>In der Applikation kann eine Einkaufsliste geführt werden. Die Einträge könenn von allen erfasst werden und auch abgehakt, sobald etwas eingekauft wurde.</p>
-    <h4>Finanzen</h4>
-    <p>Bei den Finanzen können Rechnungen erstellt werden sobald etwas eingekauft wurde. Es kann eingetragen werden wer alles beteiligt ist und dann wird ausgerechnet, wer wieviel bezahlen muss.</p>
+    <p class="description">Jeder in der WG kann Ämtlis erstellen.</p>
+    <p class="description">Jedes Dieser Ämtli hat ein User dem es aktuelll zugewiesen ist. Ausserdem wird die Deadlin ausgerechnet, in der es erledigt sien muss. Dies passiert mithilfe der altenDeadline und den Anzahl intervall Tagen.</p>
 </main>
 </html>

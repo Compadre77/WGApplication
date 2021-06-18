@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "password": "Staubsaugen",
+        "username": "Test",
+        "roles": [
+            "ADMIN"
+        ]
+    },
+    {
+        "id": 2,
+        "password": "Staubsaugen",
+        "username": "Test",
+        "roles": ["ADMIN"]
+    },
+    {
+        "id": 3,
+        "password": "Staubsaugen",
+        "username": "Test",
+        "roles": ["ADMIN"]
+    },
+    {
+        "id": 4,
+        "password": "Staubsaugen",
+        "username": "Test",
+        "roles": ["ADMIN"]
+    }
+]
