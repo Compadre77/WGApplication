@@ -4,3 +4,9 @@ nav a#about {
 nav a#about:after {
     background-color: #E7F3FC;
 }
+#about-page h4 {
+    margin-top: 50px;
+}
+#about-page p {
+    line-height: 1.2;
+}
