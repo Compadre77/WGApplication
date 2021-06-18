@@ -19,6 +19,10 @@ public class PurchaseService {
         this.purchaseRepo = repo;
     }
 
+    public List<Purchase> findAll(){
+        return  purchaseRepo.findAll();
+    }
+
     public List<PurchaseEntry> getAllPurchases() {
         return purchaseRepo.findAll().stream()
                 .map(p -> createPurchaseEntry(p))

@@ -22,6 +22,10 @@ public class BillService {
         this.userService = userService;
     }
 
+    public List<Bill> findAll(){
+        return repo.findAll();
+    }
+
     public List<BillEntry> getAllBills() {
         return repo.findAll().stream()
                 .map(b -> createBillEntry(b))

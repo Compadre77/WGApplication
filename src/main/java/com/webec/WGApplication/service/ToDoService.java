@@ -24,6 +24,10 @@ public class ToDoService {
         this.userService = userService;
     }
 
+    public List<ToDo> findAll(){
+        return repo.findAll();
+    }
+
     public List<ToDoEntry> getToDosByAssginee(int id) {
         return repo.findByCurrentAssignee(id).stream().map(t -> createTodoEntry(t)).collect(toList());
     }

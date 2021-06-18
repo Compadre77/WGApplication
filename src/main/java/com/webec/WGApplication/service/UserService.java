@@ -16,6 +16,10 @@ public class UserService {
 
     public UserService(UserRepository repo) { this.repo = repo; }
 
+    public List<User> findAll(){
+        return repo.findAll();
+    }
+
     public List<UserEntry> getAllUsers() {
         return repo.findAll().stream().map(u -> new UserEntry(
                 u.getId(),
