@@ -1,4 +1,4 @@
-package com.webec.WGApplication.entity;
+package com.webec.WGApplication.entry;
 
 import com.webec.WGApplication.model.UserEntry;
 import org.junit.Assert;
