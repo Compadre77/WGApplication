@@ -14,7 +14,7 @@ public class BillEntryTest {
     Date date = new Date(2021 -06 -18);
     int creatorId = 1;
     String description = "test";
-    double amount = 1.0;
+    double amount = 1.00;
     BillStatus billStatus = BillStatus.POSITIV;
     List<Integer> userIDs = List.of(1);
     boolean isFix = true;
@@ -27,7 +27,7 @@ public class BillEntryTest {
         Assert.assertEquals(date, testObject.date);
         Assert.assertEquals(creatorId, testObject.creatorId);
         Assert.assertEquals(description, testObject.description);
-        Assert.assertEquals(amount, testObject.amount);
+        Assert.assertEquals(amount, testObject.amount,0.00);
         Assert.assertEquals(billStatus, testObject.billStatus);
         Assert.assertEquals(userIDs, testObject.userIDs);
         Assert.assertEquals(isFix, testObject.isFix);
