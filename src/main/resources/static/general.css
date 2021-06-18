@@ -21,8 +21,13 @@ h2 {
 
 h3 {
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 500;
+}
+@media screen and (min-width: 500px) {
+    h3 {
+        font-size: 1.25rem;
+    }
 }
 
 h4{
@@ -87,21 +92,56 @@ a {
 
 nav {
     background-color: white;
+    bottom: 0;
     box-shadow: 0 0 6px #2424245e;
     box-sizing: border-box;
     display: flex;
-    flex-direction: column;
-    height: 100vh;
+    flex-direction: row;
+    height: 80px;
     justify-content: space-between;
     left: 0;
-    padding-top: 50px;
+    padding-top: 20px;
     position: fixed;
-    top: 0;
-    width: 80px;
+    width: 100vw;
     z-index: 10;
     align-items: center;
 }
 
+nav ul {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+nav  #about{
+    display: none;
+}
+
+@media screen and (min-width: 500px){
+    nav {
+        bottom: auto;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        justify-content: space-between;
+        left: 0;
+        padding-top: 50px;
+        position: fixed;
+        top: 0;
+        width: 80px;
+        z-index: 10;
+        align-items: center;
+    }
+    nav ul {
+        display: block;
+        width: auto;
+    }
+    nav  #about{
+        display: flex;
+    }
+
+}
 nav a {
     align-items: center;
     display: flex;
@@ -134,9 +174,18 @@ nav a:hover:after {
 /* LAYOUT */
 main {
     box-sizing: border-box;
-    margin: 80px 20px 200px 100px;
-    width: calc(100% - 120px);
+    margin: 80px 20px 200px 20px;
+    width: calc(100% - 40px);
 }
+
+@media screen and (min-width: 500px) {
+    main {
+        margin: 80px 20px 200px 100px;
+        width: calc(100% - 120px);
+    }
+
+}
+
 .content-wrapper{
     margin: auto;
     max-width: 1200px;
@@ -250,12 +299,15 @@ main {
     margin-bottom: 30px;
     width: 100%;
 }
+.add-popup form .checkbox-wrapper .checkbox{
+    margin-bottom: 50px;
+}
 .add-popup form .checkbox-wrapper{
     align-items: center;
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    margin: 30px 0;
+    margin: 30px 0 0 0;
     width: 100%;
 }
 .add-popup form .checkbox-wrapper label{
