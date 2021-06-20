@@ -1,10 +1,14 @@
-## About WG Application
+# WG Application
 
-Um die Applikation richtig starten zu können werden beim ersten mal ausführen Benutzer erstellt, und Sample daten gespeichert. 
-Das Die ID's der Benutzer jeweils generiert werden stimmen sie nicht mit den ID's überein, die von den anderen Entitäten verendet werden.
-Falls Sie also beim starten der Applikation fehler bekommen ist es notwendig die ID's bei Folgenden Tables anzupassen auf die generierte User'IDs:
+This repository contains the backend and the UI components of the WGApplication. It is based on Java, Springboot and Thymeleaf.
 
-* Table:TO_DO_USERIDS - Die UserIDs müssen angepasst werden
-* Table:TODO - Die CurrentAssignees müssen angepasst werden
-* Table:BILL_USERIDS - Die UserIDs müssen angepasst werden
-* Table:BILL - Die Creators müssen angepasst werden
+## Running
+Users and sample data are added to the database when first running this Application. As a consequence, every user automatically 
+gets and ID. Unfortunately, it can happen that the other existing ID's from the other tables don't match. 
+We therefore, kindly ask you to do the following:
+
+1. Table:TO_DO_USERIDS -> Change UserID's to match the one's in the user table
+2. Table:TO -> Change UserID's to match the one's in the user table
+3. Table:BILL_USERIDS -> Change UserID's to match the one's in the user table
+4. Table:BILL -> Change UserID's to match the one's in the user table
+  
